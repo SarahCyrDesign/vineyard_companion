@@ -1,0 +1,8 @@
+<h1>Welcome, <%=@user.username%></h1>
+<h2>Here are your Vineyards!</h2>
+
+<%@user.vineyards.each do |vineyard|%>
+  <p><a href="/vineyards/<%=vineyard.id%>"><%= vineyard.name %></p>
+<% end %>
+<br>
+<a href="/logout">Log out</a>

@@ -1,17 +1,14 @@
 class UsersController < Sinatra::Base
 
-  get '/users/:slug' do
-    @user = User.find_by_slug(params[:slug])
-    erb :'users/show'
-  end
-
-  get '/signup' do
-    if !logged_in?
-      erb :'users/signup', locals: {message: "Please create an account before signing in"}
+  get "/signup" do
+    if logged_in?
+      redirect '/vineyards'
     else
-      redirect to '/vineyards'
-  end
-end
+      erb :'/users/signup', locals: {message: "Please create an account before signing in"}
+   end
+ end
+
+
 
   post '/signup' do
     user = User.new(:username => params[:username], :password => params[:password])
@@ -29,8 +26,8 @@ end
       redirect to '/vineyards'
     else
       erb :'/users/login'
+    end
   end
-end
 
 
   post '/login' do
@@ -51,5 +48,10 @@ end
     else
       redirect to '/'
     end
+  end
+
+  get '/users/:slug' do
+    @user = User.find_by_slug(params[:slug])
+    erb :'users/show'
   end
 end
