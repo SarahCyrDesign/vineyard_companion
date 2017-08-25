@@ -25,7 +25,7 @@ class VineyardsController < Sinatra::Base
       redirect to '/'
     elsif !params[:content].empty?
       @user = User.find(session[:user_id])
-      @vineyard = Vineyard.create(name: params[:name], location: params[:location], phone_number: params[:phone_number]), review: params[:review])
+      @vineyard = Vineyard.create(name: params[:name], location: params[:location], phone_number: params[:phone_number], review: params[:review])
       @user.vineyards << @vineyard
       redirect to 'vineyards/#{@vineyard.id}'
     else
@@ -63,7 +63,7 @@ class VineyardsController < Sinatra::Base
     elsif params[:content].empty?
       redirect to '/vineyards/#{@vineyard.id}/edit'
     else
-      @vineyard.update(name: params[:name], location: params[:location], phone_number: params[:phone_number]), review: params[:review])
+      @vineyard.update(name: params[:name], location: params[:location], phone_number: params[:phone_number], review: params[:review])
       @vineyard.save
       redirect to '/vineyards/#{@vineyard.id}'
     end
@@ -82,6 +82,5 @@ class VineyardsController < Sinatra::Base
       redirect to '/login'
      end
    end
-  end
 
 end

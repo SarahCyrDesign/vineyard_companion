@@ -84,7 +84,6 @@ class WinesController < Sinatra::Base
      else
       redirect to '/login'
      end
-   end
   end
 
 
