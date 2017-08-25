@@ -6,6 +6,7 @@ class UsersController < Sinatra::Base
     else
       redirect to '/vineyards'
   end
+end
 
   post '/signup' do
     user = User.new(:username => params[:username], :password => params[:password])
@@ -24,6 +25,7 @@ class UsersController < Sinatra::Base
     else
       erb :'/users/login'
   end
+end
 
 
   post '/login' do
