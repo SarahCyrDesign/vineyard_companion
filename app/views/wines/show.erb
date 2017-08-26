@@ -1,0 +1,19 @@
+<h2><%= @wine.name %></h2>
+<h3>Price per Bottle: $<%= @wine.price_per_bottle %></h3>
+<h3>Type: <%= @wine.type %></h3>
+<h3>Scent(s) <%= @wine.scent %></h3>
+<h3>Taste(s) <%= @wine.taste %></h3>
+<p>Final thoughts: <%= @wine.summary %></p>
+<h3>Rating: <%= @wine.rating %></h3>
+<h3><From: <%= @wine.vineyard.name %></h3>
+
+<br>
+<form action="/wines/<%=@wine.id%>" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <button type="submit">Delete Wine</button>
+</form>
+
+<a class= "button" href="/wines/<%=@wine.id%>/edit">Edit</a>
+<a class= "button" href="/wines/new">Add a Wine</a>
+<a class= "button" href="/wines/index">Wine List</a>
+<a class= "button" href="/wines/index">Vineyard List</a>

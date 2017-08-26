@@ -1,0 +1,13 @@
+<h2><%= @vineyard.name %></h2>
+<h3>Located at: <%= @vineyard.location %></h3>
+<h3>Contact: <%= @vineyard.phone_number %></h3>
+<p>Review: <%= @vineyard.review %></p>
+<br>
+<form action="/vineyards/<%=@vineyard.id%>" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <button type="submit">Delete</button>
+</form>
+
+<a class= "button" href="/vineyards/<%=@vineyard.id%>/edit">Edit</a>
+<a class= "button" href="/vineyards/new">Add a Vineyard or Winery</a>
+<a class= "button" href="/vineyards/index">Vineyard/Winery List</a>
