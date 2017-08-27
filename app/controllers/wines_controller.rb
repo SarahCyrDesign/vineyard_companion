@@ -4,7 +4,7 @@ class WinesController < ApplicationController
      if logged_in?
        @user = current_user
        @wines = Wine.all
-       erb :'/wines'
+       erb :'/wines/index'
      else
        redirect to '/login'
      end
@@ -24,7 +24,7 @@ class WinesController < ApplicationController
   post '/wines' do
     if !session[:user_id]
       redirect to '/'
-    elsif !params[:content].empty?
+    elsif !params[:name].empty?
       @user = User.find(session[:user_id])
       @wine = Wine.create(name: params[:name], price_per_bottle: params[:price_per_bottle], type: params[:type], scent: params[:scent], taste: params[:taste], summary: params[:summary], rating: params[:rating])
       @user.wines << @wine
@@ -37,7 +37,7 @@ class WinesController < ApplicationController
 
   get '/wines/:id' do
     if logged_in?
-      @wine = Wine.find(params[:id])
+      @wine = Wine.find_by_id(params[:id])
       erb :'/wines/show'
     else
       redirect '/login'
@@ -62,7 +62,7 @@ class WinesController < ApplicationController
       redirect to '/'
     elsif session[:user_id] != @wine.user_id
       redirect to '/wines'
-    elsif params[:content].empty?
+    elsif params[:name].empty?
       redirect to '/wines/#{@wine.id}/edit'
     else
       @wine.update(name: params[:name], price_per_bottle: params[:price_per_bottle], type: params[:type], scent: params[:scent], taste: params[:taste], summary: params[:summary], rating: params[:rating])

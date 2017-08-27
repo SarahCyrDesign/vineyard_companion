@@ -4,7 +4,7 @@ class VineyardsController < ApplicationController
      if logged_in?
        @user = current_user
        @vineyards = Vineyard.all
-       erb :'/vineyards'
+       erb :'/vineyards/index'
      else
        redirect to '/login'
      end
@@ -23,7 +23,7 @@ class VineyardsController < ApplicationController
   post '/vineyards' do
     if !session[:user_id]
       redirect to '/'
-    elsif !params[:content].empty?
+    elsif !params[:name].empty?
       @user = User.find(session[:user_id])
       @vineyard = Vineyard.create(name: params[:name], location: params[:location], phone_number: params[:phone_number], review: params[:review])
       @user.vineyards << @vineyard
@@ -36,7 +36,7 @@ class VineyardsController < ApplicationController
 
   get '/vineyards/:id' do
     if logged_in?
-      @vineyard = Vineyard.find(params[:id])
+      @vineyard = Vineyard.find_by_id(params[:id])
       erb :'/vineyards/show'
     else
       redirect '/login'
@@ -60,7 +60,7 @@ class VineyardsController < ApplicationController
       redirect to '/'
     elsif session[:user_id] != @vineyard.user_id
       redirect to '/vineyards'
-    elsif params[:content].empty?
+    elsif params[:name].empty?
       redirect to '/vineyards/#{@vineyard.id}/edit'
     else
       @vineyard.update(name: params[:name], location: params[:location], phone_number: params[:phone_number], review: params[:review])
