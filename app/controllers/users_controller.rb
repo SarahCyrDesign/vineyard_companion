@@ -32,8 +32,8 @@ class UsersController < ApplicationController
 
   post '/login' do
     user = User.find_by(:username => params[:username])
-      if user && user.authentication(params[:password])
-        session[:user_id] = user_id
+      if user && user.authenticate(params[:password])
+        session[:user_id] = user.id
         redirect to '/vineyards/index'
       else
         redirect to '/'
