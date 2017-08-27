@@ -1,9 +1,9 @@
-class WinesController < Sinatra::Base
+class WinesController < ApplicationController
 
   get '/wines' do
      if logged_in?
        @user = current_user
-       @winess = Wine.all
+       @wines = Wine.all
        erb :'/wines'
      else
        redirect to '/login'

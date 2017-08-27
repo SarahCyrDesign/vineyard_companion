@@ -1,4 +1,4 @@
-class UsersController < Sinatra::Base
+class UsersController < ApplicationController
 
   get "/signup" do
     if logged_in?
@@ -13,7 +13,7 @@ class UsersController < Sinatra::Base
   post '/signup' do
     user = User.new(:username => params[:username], :password => params[:password])
       if user.save
-        session[:user_id] = user_id
+        session[:user_id] = user.id
         redirect to '/vineyards'
       else
         redirect to '/users/signup'

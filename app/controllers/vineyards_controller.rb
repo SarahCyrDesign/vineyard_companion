@@ -1,4 +1,4 @@
-class VineyardsController < Sinatra::Base
+class VineyardsController < ApplicationController
 
   get '/vineyards' do
      if logged_in?
