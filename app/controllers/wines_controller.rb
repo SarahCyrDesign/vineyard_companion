@@ -24,7 +24,7 @@ class WinesController < ApplicationController
   post '/wines' do
     if !session[:user_id]
       redirect to '/'
-    elsif !params[:name].empty?
+    elsif !params[:name].empty? && !params[:price_per_bottle].empty? && !params[:color].empty? && !params[:scent].empty? && !params[:taste].empty? && !params[:summary].empty? && !params[:rating].empty? && !params[:wine][:vineyard_id].empty?
 
       @user = User.find(session[:user_id])
       @wine = Wine.create(name: params[:name], price_per_bottle: params[:price_per_bottle], color: params[:color], scent: params[:scent], taste: params[:taste], summary: params[:summary], rating: params[:rating], vineyard_id: params[:wine][:vineyard_id])
@@ -62,10 +62,10 @@ class WinesController < ApplicationController
       redirect to '/'
     elsif session[:user_id] != @wine.user_id
       redirect to '/wines'
-    elsif params[:name].empty?
+    elsif params[:name].empty? && params[:price_per_bottle].empty? && params[:color].empty? && params[:scent].empty? && params[:taste].empty? && params[:summary].empty? && params[:rating].empty? && params[:wine][:vineyard_id].empty?
       redirect to "/wines/#{@wine.id}/edit"
     else
-      @wine.update(name: params[:name], price_per_bottle: params[:price_per_bottle], color: params[:color], scent: params[:scent], taste: params[:taste], summary: params[:summary], rating: params[:rating])
+      @wine.update(name: params[:name], price_per_bottle: params[:price_per_bottle], color: params[:color], scent: params[:scent], taste: params[:taste], summary: params[:summary], rating: params[:rating], vineyard_id: params[:wine][:vineyard_id])
       @wine.save
       redirect to "wines/#{@wine.id}"
     end

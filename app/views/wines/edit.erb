@@ -5,13 +5,13 @@
 <label for="name">Name:</label>
 <input type="text" name="name">
 <br>
-<label for="price_per_bottle">Price per Bottle: </label>
-<input type="text" name="price_per_bottle">$</input>
+<label for="price_per_bottle">Price per Bottle: $ </label>
+<input type="text" name="price_per_bottle"></input>
 <br>
-<select name="type">
-  <option value="Red">Red</option>
-  <option value="White">White</option>
-  <option value="Rose">Rose</option>
+<select name="color">
+    <option value="Red">Red</option>
+    <option value="White">White</option>
+    <option value="Rose">Rose</option>
 </select>
 <br>
 <label for="scent">Scent(s):</label>
@@ -24,23 +24,22 @@
 <input type="textarea" name="summary">
 <br>
 <p>Rating:</p>
-<select name="rating" value="N/A">
-  <option value="1">1 star</option>
-  <option value="2">2 stars</option>
-  <option value="3">3 stars</option>
-  <option value="4">4 stars</option>
-  <option value="5">5 stars</option>
+  <select name="rating" value="N/A">
+    <option value="1">1 star</option>
+    <option value="2">2 stars</option>
+    <option value="3">3 stars</option>
+    <option value="4">4 stars</option>
+    <option value="5">5 stars</option>
 </select>
 <br>
-<label>Select Vineyard</label>
-<%Vineyards.all.each do |vineyard|%>
-<input type="radio" name="wine[vineyard_id]" id="<%= vineyard.name %>" value="<%=vineyard.id%>"><%=vineyard.name%></input>
+  <label>Select Vineyard</label>
+<%Vineyard.all.each do |vineyard|%>
+  <input type="radio" name="wine[vineyard_id]" id="<%= vineyard.name %>" value="<%=vineyard.id%>"><%=vineyard.name%></input>
 <%end%>
 
 <br></br>
-<label>or add another Vineyard</label>
-  <input  type="text" name="vineyard[name]" id="vineyard_name"></input>
-<br></br>
-
+  <label>or add another Vineyard</label>
+    <input  type="text" name="vineyard[name]" id="vineyard_name"></input>
+  <br></br>
 <input type="submit" value="Submit">
 </form>
