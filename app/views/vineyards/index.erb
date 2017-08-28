@@ -1,13 +1,15 @@
-<%@vineyards.each do |vineyard|%>
-<p><a href="/vineyards/<%=vineyard.id%>"><%= vineyard.name %></p>
+<% @vineyards.each do |vineyard| %>
+<p><a href="/vineyards/<%=vineyard.id%>"><%= vineyard.name %></a></p>
 <h3>Located at: <%=vineyard.location%></h3>
 <h3>Contact: <%=vineyard.phone_number%></h3>
 <p>Review: <%=vineyard.review%></p>
-<a class= "button" href="/vineyards/<%=@vineyard.id%>/edit">Edit</a>
+<a class= "button" href="/vineyards/<%=vineyard.id%>/edit">Edit</a>
 <h3>Wine List</h3>
-<p><%=vineyard.wine.name%></p>
+<% vineyard.wines.each do |wine| %>
+<p><strong>Name: </strong><%= wine.name %></p>
 <%end%>
-<a class= "button" href="/wines/index">Wine List</a>
+<%end%>
+<a class= "button" href="/wines">Wine List</a>
 <br>
 <br>
 

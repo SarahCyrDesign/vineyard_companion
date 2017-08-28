@@ -25,10 +25,10 @@ class WinesController < ApplicationController
     if !session[:user_id]
       redirect to '/'
     elsif !params[:name].empty?
+
       @user = User.find(session[:user_id])
-      @wine = Wine.create(name: params[:name], price_per_bottle: params[:price_per_bottle], type: params[:type], scent: params[:scent], taste: params[:taste], summary: params[:summary], rating: params[:rating])
-      @user.wines << @wine
-      redirect to 'wines/#{@wine.id}'
+      @wine = Wine.create(name: params[:name], price_per_bottle: params[:price_per_bottle], color: params[:color], scent: params[:scent], taste: params[:taste], summary: params[:summary], rating: params[:rating], vineyard_id: params[:wine][:vineyard_id])
+      redirect to "wines/#{@wine.id}"
     else
       redirect to 'wines/new'
     end
@@ -63,11 +63,11 @@ class WinesController < ApplicationController
     elsif session[:user_id] != @wine.user_id
       redirect to '/wines'
     elsif params[:name].empty?
-      redirect to '/wines/#{@wine.id}/edit'
+      redirect to "/wines/#{@wine.id}/edit"
     else
-      @wine.update(name: params[:name], price_per_bottle: params[:price_per_bottle], type: params[:type], scent: params[:scent], taste: params[:taste], summary: params[:summary], rating: params[:rating])
+      @wine.update(name: params[:name], price_per_bottle: params[:price_per_bottle], color: params[:color], scent: params[:scent], taste: params[:taste], summary: params[:summary], rating: params[:rating])
       @wine.save
-      redirect to '/wines/#{@wine.id}'
+      redirect to "wines/#{@wine.id}"
     end
   end
 
@@ -85,6 +85,4 @@ class WinesController < ApplicationController
       redirect to '/login'
      end
   end
-
-
 end

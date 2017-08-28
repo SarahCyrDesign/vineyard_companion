@@ -27,7 +27,7 @@ class VineyardsController < ApplicationController
       @user = User.find(session[:user_id])
       @vineyard = Vineyard.create(name: params[:name], location: params[:location], phone_number: params[:phone_number], review: params[:review])
       @user.vineyards << @vineyard
-      redirect to 'vineyards/#{@vineyard.id}'
+      redirect to "/vineyards/#{@vineyard.id}"
     else
       redirect to 'vineyards/new'
     end
@@ -61,11 +61,11 @@ class VineyardsController < ApplicationController
     elsif session[:user_id] != @vineyard.user_id
       redirect to '/vineyards'
     elsif params[:name].empty? && params[:location].empty? && params[:phone_number].empty? && params[:review].empty?
-      redirect to '/vineyards/#{@vineyard.id}/edit'
+      redirect to "/vineyards/#{@vineyard.id}/edit"
     else
       @vineyard.update(name: params[:name], location: params[:location], phone_number: params[:phone_number], review: params[:review])
       @vineyard.save
-      redirect to '/vineyards/#{@vineyard.id}'
+      redirect to "/vineyards/#{@vineyard.id}"
     end
   end
 

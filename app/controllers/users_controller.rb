@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   get "/signup" do
     if logged_in?
-      redirect '/vineyards/index'
+      redirect '/vineyards'
     else
       erb :'/users/signup', locals: {message: "Please create an account before signing in"}
    end
@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     user = User.new(:username => params[:username], :password => params[:password])
       if user.save
         session[:user_id] = user.id
-        redirect to '/vineyards/index'
+        redirect to '/vineyards'
       else
         redirect to '/users/signup'
       end
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   get '/login' do
     if logged_in?
-      redirect to '/vineyards/index'
+      redirect to '/vineyards'
     else
       erb :'/users/login'
     end
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     user = User.find_by(:username => params[:username])
       if user && user.authenticate(params[:password])
         session[:user_id] = user.id
-        redirect to '/vineyards/index'
+        redirect to '/vineyards'
       else
         redirect to '/'
       end
@@ -54,4 +54,5 @@ class UsersController < ApplicationController
     @user = User.find_by_slug(params[:slug])
     erb :'users/show'
   end
+
 end

@@ -1,4 +1,4 @@
-class Vineyard < ActiveRecord::Base
+class Wine < ActiveRecord::Base
   include Slug::InstanceMethods
   extend Slug::ClassMethods
   belongs_to :vineyard

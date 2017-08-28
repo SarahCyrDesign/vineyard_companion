@@ -7,7 +7,7 @@
 <label for="price_per_bottle">Price per Bottle: </label>
 <input type="text" name="price_per_bottle">$</input>
 <br>
-<select name="type">
+<select name="color">
     <option value="Red">Red</option>
     <option value="White">White</option>
     <option value="Rose">Rose</option>
@@ -32,13 +32,13 @@
 </select>
 <br>
   <label>Select Vineyard</label>
-<%Vineyards.all.each do |vineyard|%>
+<%Vineyard.all.each do |vineyard|%>
   <input type="radio" name="wine[vineyard_id]" id="<%= vineyard.name %>" value="<%=vineyard.id%>"><%=vineyard.name%></input>
 <%end%>
 
 <br></br>
   <label>or add another Vineyard</label>
-    <input  type="text" name="vineayrd[name]" id="vineyard_name"></input>
+    <input  type="text" name="vineyard[name]" id="vineyard_name"></input>
   <br></br>
 <input type="submit" value="Submit Wine">
 </form>
