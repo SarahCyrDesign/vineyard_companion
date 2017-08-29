@@ -1,7 +1,9 @@
 <%@wines.each do |wine|%>
 <p><a href="/wines/<%=wine.id%>"><%= wine.name %></p>
-<p><%=wine.vineyard.name%></p>
+<% wine.vineyards.each do |vineyard| %>
+<p><%= vineyard.name %></p>
 <a class= "button" href="/wines/<%=wine.id%>/edit">Edit</a>
+<%end%>
 <%end%>
 
 

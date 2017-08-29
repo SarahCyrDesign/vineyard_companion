@@ -2,10 +2,14 @@ p {
   font-family: 'Roboto', sans-serif;
 }
 
-#header {
+a {
+  text-decoration: none;
+}
+
+.header {
   font-family: 'Cinzel Decorative', cursive;
 }
 
-#subhead {
+.subhead {
   font-family: 'Oregano', cursive;
 }
