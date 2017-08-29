@@ -2,8 +2,8 @@ class VineyardsController < ApplicationController
 
   get '/vineyards' do
      if logged_in?
-       @user = current_user
-       @vineyards = Vineyard.all
+      #  @user = current_user
+       @vineyards = current_user.vineyards.all
        erb :'/vineyards/index'
      else
        redirect to '/login'
