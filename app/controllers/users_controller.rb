@@ -4,7 +4,8 @@ class UsersController < ApplicationController
     if logged_in?
       redirect '/vineyards'
     else
-      erb :'/users/signup', locals: {message: "Please create an account before signing in"}
+      flash[:message] = "Please sign in to continue"
+      erb :'/users/signup'
    end
  end
 
@@ -16,6 +17,7 @@ class UsersController < ApplicationController
         session[:user_id] = user.id
         redirect to '/vineyards'
       else
+        flash[:message] = "Please fill in all fields"
         redirect to '/users/signup'
       end
   end
@@ -25,6 +27,7 @@ class UsersController < ApplicationController
     if logged_in?
       redirect to '/vineyards'
     else
+      flash[:message] = "Please create an account or enter your login info"
       erb :'/users/login'
     end
   end
@@ -36,6 +39,7 @@ class UsersController < ApplicationController
         session[:user_id] = user.id
         redirect to '/vineyards'
       else
+        flash[:message] = "login info is incorrect, please try again"
         redirect to '/'
       end
   end
@@ -44,6 +48,7 @@ class UsersController < ApplicationController
   get '/logout' do
     if logged_in?
       session.clear
+      flash[:message] = "You are now logged out"
       redirect to '/login'
     else
       redirect to '/'

@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+  <p style="color:#c40707;"><%= flash[:message] %> </p>
+<% end %>
+
 <h1>Edit <%= @wine.name %></h1>
 
 <form action="/wines/<%= @wine.id %>" method="POST">

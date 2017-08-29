@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+  <p style="color:#c40707;"><%= flash[:message] %> </p>
+<% end %>
+
 <% @vineyards.each do |vineyard| %>
 <p><a href="/vineyards/<%=vineyard.id%>"><%= vineyard.name %></a></p>
 <h3>Located at: <%=vineyard.location%></h3>

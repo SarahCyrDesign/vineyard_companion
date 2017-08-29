@@ -6,6 +6,7 @@ class WinesController < ApplicationController
        @wines = Wine.all
        erb :'/wines/index'
      else
+       flash[:message] = "Please login to continue"
        redirect to '/login'
      end
   end
@@ -15,6 +16,7 @@ class WinesController < ApplicationController
     if logged_in?
       erb :'/wines/new'
     else
+      flash[:message] = "Please login to continue"
       redirect to '/login'
     end
   end
@@ -30,6 +32,7 @@ class WinesController < ApplicationController
       @wine = Wine.create(name: params[:name], price_per_bottle: params[:price_per_bottle], color: params[:color], scent: params[:scent], taste: params[:taste], summary: params[:summary], rating: params[:rating], vineyard_id: params[:wine][:vineyard_id])
       redirect to "wines/#{@wine.id}"
     else
+      flash[:message] = "Please fill in all blank fields"
       redirect to 'wines/new'
     end
   end
@@ -40,6 +43,7 @@ class WinesController < ApplicationController
       @wine = Wine.find_by_id(params[:id])
       erb :'/wines/show'
     else
+      flash[:message] = "Please login to continue"
       redirect '/login'
     end
   end
@@ -50,6 +54,7 @@ class WinesController < ApplicationController
     if logged_in? && @wine.user_id == current_user.id
       erb :'/wines/edit'
     else
+      flash[:message] = "Please login to continue"
       redirect '/login'
     end
   end
@@ -82,6 +87,7 @@ class WinesController < ApplicationController
         redirect to '/wines'
       end
      else
+       flash[:message] = "Please login to continue"
       redirect to '/login'
      end
   end

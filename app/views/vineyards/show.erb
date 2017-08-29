@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+  <p style="color:#c40707;"><%= flash[:message] %> </p>
+<% end %>
+
 <h2><%= @vineyard.name %></h2>
 <h3>Located at: <%= @vineyard.location %></h3>
 <h3>Contact: <%= @vineyard.phone_number %></h3>

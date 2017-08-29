@@ -1,5 +1,9 @@
 <h1>Add a new Vineyard or Winery</h1>
 
+<% if flash.has?(:message) %>
+  <p style="color:#c40707;"><%= flash[:message] %> </p>
+<% end %>
+
 <form action="/vineyards" method="POST">
 <label for="name">Name:</label>
 <input type="text" name="name">
