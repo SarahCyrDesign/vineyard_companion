@@ -23,14 +23,21 @@ class WinesController < ApplicationController
 
 
   post '/wines' do
-    binding.pry
     if !session[:user_id]
       redirect to '/'
+
+    elsif !params[:name].empty? && !params[:price_per_bottle].empty? && !params[:color].empty? && !params[:scent].empty? && !params[:taste].empty? && !params[:summary].empty? && !params[:rating].empty? && !params[:vineyard][:name].empty?
+      @user = User.find(session[:user_id])
+      @wine = Wine.create(name: params[:name], price_per_bottle: params[:price_per_bottle], color: params[:color], scent: params[:scent], taste: params[:taste], summary: params[:summary], rating: params[:rating], vineyard_name: params[:vineyard][:name])
+      flash[:message] = "Successfully Added"
+      redirect to "wines/#{@wine.id}"
 
     elsif !params[:name].empty? && !params[:price_per_bottle].empty? && !params[:color].empty? && !params[:scent].empty? && !params[:taste].empty? && !params[:summary].empty? && !params[:rating].empty? && !params[:wine][:vineyard_id].empty?
       @user = User.find(session[:user_id])
       @wine = Wine.create(name: params[:name], price_per_bottle: params[:price_per_bottle], color: params[:color], scent: params[:scent], taste: params[:taste], summary: params[:summary], rating: params[:rating], vineyard_id: params[:wine][:vineyard_id])
+      flash[:message] = "Successfully Added"
       redirect to "wines/#{@wine.id}"
+
     else
       flash[:message] = "Please fill in all blank fields"
       redirect to 'wines/new'
