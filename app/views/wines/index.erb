@@ -2,12 +2,10 @@
   <p style="color:#c40707;"><%= flash[:message] %> </p>
 <% end %>
 
-<%@wines.each do |wine|%>
+<% current_user.wines.all.sort_by.each do |wine| %>
 <p><a href="/wines/<%=wine.id%>"><%= wine.name %></p>
-<% wine.vineyards.each do |vineyard| %>
-<p><%= vineyard.name %></p>
+<a href="vineyards/<%= wine.vineyard.id %>"><%= wine.vineyard.name %></a>
 <a class= "button" href="/wines/<%=wine.id%>/edit">Edit</a>
-<%end%>
 <%end%>
 
 

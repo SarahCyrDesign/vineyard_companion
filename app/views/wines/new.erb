@@ -36,7 +36,7 @@
 </select>
 <br>
   <label>Select Vineyard</label>
-<%Vineyard.all.each do |vineyard|%>
+<% current_user.vineyards.all.sort_by.each do |vineyard| %>
   <input type="radio" name="wine[vineyard_id]" id="<%= vineyard.name %>" value="<%=vineyard.id%>"><%=vineyard.name%></input>
 <%end%>
 

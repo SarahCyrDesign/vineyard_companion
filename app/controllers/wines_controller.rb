@@ -2,11 +2,10 @@ class WinesController < ApplicationController
 
   get '/wines' do
      if logged_in?
-       @user = current_user
-       @wines = Wine.all
+      #  @user = current_user
+       @wines = current_user.wines.all
        erb :'/wines/index'
      else
-       flash[:message] = "Please login to continue"
        redirect to '/login'
      end
   end
@@ -27,7 +26,6 @@ class WinesController < ApplicationController
     if !session[:user_id]
       redirect to '/'
     elsif !params[:name].empty? && !params[:price_per_bottle].empty? && !params[:color].empty? && !params[:scent].empty? && !params[:taste].empty? && !params[:summary].empty? && !params[:rating].empty? && !params[:wine][:vineyard_id].empty?
-
       @user = User.find(session[:user_id])
       @wine = Wine.create(name: params[:name], price_per_bottle: params[:price_per_bottle], color: params[:color], scent: params[:scent], taste: params[:taste], summary: params[:summary], rating: params[:rating], vineyard_id: params[:wine][:vineyard_id])
       redirect to "wines/#{@wine.id}"
@@ -51,7 +49,7 @@ class WinesController < ApplicationController
 
   get '/wines/:id/edit' do
     @wine = Wine.find_by_id(params[:id])
-    if logged_in? && @wine.user_id == current_user.id
+    if logged_in? # && @wine.user_id == current_user.id #need to work out for edit form
       erb :'/wines/edit'
     else
       flash[:message] = "Please login to continue"
@@ -65,7 +63,7 @@ class WinesController < ApplicationController
     @wine = Wine.find_by_id(params[:id])
     if !session[:user_id]
       redirect to '/'
-    elsif session[:user_id] != @wine.user_id
+    elsif session[:user_id] #!= @wine.user_id #need to work on
       redirect to '/wines'
     elsif params[:name].empty? && params[:price_per_bottle].empty? && params[:color].empty? && params[:scent].empty? && params[:taste].empty? && params[:summary].empty? && params[:rating].empty? && params[:wine][:vineyard_id].empty?
       redirect to "/wines/#{@wine.id}/edit"

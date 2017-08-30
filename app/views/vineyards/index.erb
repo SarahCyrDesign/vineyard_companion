@@ -9,8 +9,8 @@
 <p>Review: <%=vineyard.review%></p>
 <a class= "button" href="/vineyards/<%=vineyard.id%>/edit">Edit</a>
 <h3>Wine List</h3>
-<% vineyard.wines.each do |wine| %>
-<p><strong>Name: </strong><%= wine.name %></p>
+<% current_user.wines.all.sort_by.each do |wine| %>
+<p><a href="/wines/<%=wine.id%>"><%= wine.name %></p></a>
 <%end%>
 <%end%>
 <a class= "button" href="/wines">Wine List</a>
