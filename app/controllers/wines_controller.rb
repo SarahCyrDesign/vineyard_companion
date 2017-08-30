@@ -3,7 +3,7 @@ class WinesController < ApplicationController
   get '/wines' do
      if logged_in?
       #  @user = current_user
-       @wines = current_user.wines.all
+       @wines = current_user.wines
        erb :'/wines/index'
      else
        redirect to '/login'
@@ -23,8 +23,10 @@ class WinesController < ApplicationController
 
 
   post '/wines' do
+    binding.pry
     if !session[:user_id]
       redirect to '/'
+
     elsif !params[:name].empty? && !params[:price_per_bottle].empty? && !params[:color].empty? && !params[:scent].empty? && !params[:taste].empty? && !params[:summary].empty? && !params[:rating].empty? && !params[:wine][:vineyard_id].empty?
       @user = User.find(session[:user_id])
       @wine = Wine.create(name: params[:name], price_per_bottle: params[:price_per_bottle], color: params[:color], scent: params[:scent], taste: params[:taste], summary: params[:summary], rating: params[:rating], vineyard_id: params[:wine][:vineyard_id])

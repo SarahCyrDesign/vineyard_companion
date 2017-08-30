@@ -1,9 +1,11 @@
 class VineyardsController < ApplicationController
 
   get '/vineyards' do
+    #binding.pry
      if logged_in?
       #  @user = current_user
-       @vineyards = current_user.vineyards.all
+       @vineyards = current_user.vineyards
+       @wines = current_user.wines
        erb :'/vineyards/index'
      else
        redirect to '/login'
