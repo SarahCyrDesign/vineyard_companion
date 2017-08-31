@@ -22,16 +22,20 @@ class WinesController < ApplicationController
 
 
   post '/wines' do
-    binding.pry
-    if !session[:user_id]
-      redirect to '/'
+    redirect to '/' if !session[:user_id]
 
-
-    # elsif !params[:name].empty? && !params[:price_per_bottle].empty? && !params[:color].empty? && !params[:scent].empty? && !params[:taste].empty? && !params[:summary].empty? && !params[:rating].empty? && !params[:wine][:vineyard_id].empty? && !params[:vineyard][:name].empty?
-      @user = User.find(session[:user_id])
-      @wine = Wine.new(name: params[:name], price_per_bottle: params[:price_per_bottle], color: params[:color], scent: params[:scent], taste: params[:taste], summary: params[:summary], rating: params[:rating], vineyard_name: params[:vineyard][:name])
+    @wine = Wine.new(params[:wine])
+    @wine.user_id = User.find(session[:user_id]).id
+    if params[:wine][:vineyard_id].nil? && !params[:vineyard][:name].empty?
+      @wine.vineyard = Vineyard.create(params[:vineyard])
+    end
+    if @wine.save
       flash[:message] = "Successfully Added"
       redirect to "wines/#{@wine.id}"
+    else
+      binding.pry
+      # flash[:message] = @wine.errors.full_messages.join('')
+      redirect to "wines/new"
     end
   end
 
