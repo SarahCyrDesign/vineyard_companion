@@ -21,20 +21,28 @@ class WinesController < ApplicationController
   end
 
 
-
   post '/wines' do
     if !session[:user_id]
       redirect to '/'
 
-    elsif !params[:name].empty? && !params[:price_per_bottle].empty? && !params[:color].empty? && !params[:scent].empty? && !params[:taste].empty? && !params[:summary].empty? && !params[:rating].empty? && !params[:vineyard][:name].empty?
+#add new vineyard if existing vineyard field empty
+    elsif !params[:name].empty? && !params[:price_per_bottle].empty? && !params[:color].empty? && !params[:scent].empty? && !params[:taste].empty? && !params[:summary].empty? && !params[:rating].empty? && params[:wine][:vineyard_id].empty? && !params[:vineyard][:name].empty?
       @user = User.find(session[:user_id])
       @wine = Wine.create(name: params[:name], price_per_bottle: params[:price_per_bottle], color: params[:color], scent: params[:scent], taste: params[:taste], summary: params[:summary], rating: params[:rating], vineyard_name: params[:vineyard][:name])
       flash[:message] = "Successfully Added"
       redirect to "wines/#{@wine.id}"
 
-    elsif !params[:name].empty? && !params[:price_per_bottle].empty? && !params[:color].empty? && !params[:scent].empty? && !params[:taste].empty? && !params[:summary].empty? && !params[:rating].empty? && !params[:wine][:vineyard_id].empty?
+      #add existing vineyard if new vineyard field empty
+    elsif !params[:name].empty? && !params[:price_per_bottle].empty? && !params[:color].empty? && !params[:scent].empty? && !params[:taste].empty? && !params[:summary].empty? && !params[:rating].empty? && !params[:wine][:vineyard_id].empty? && params[:vineyard][:name].empty?
       @user = User.find(session[:user_id])
       @wine = Wine.create(name: params[:name], price_per_bottle: params[:price_per_bottle], color: params[:color], scent: params[:scent], taste: params[:taste], summary: params[:summary], rating: params[:rating], vineyard_id: params[:wine][:vineyard_id])
+      flash[:message] = "Successfully Added"
+      redirect to "wines/#{@wine.id}"
+
+      #add new vineyard if new vineyard field filled and existing vineyard filled
+    elsif !params[:name].empty? && !params[:price_per_bottle].empty? && !params[:color].empty? && !params[:scent].empty? && !params[:taste].empty? && !params[:summary].empty? && !params[:rating].empty? && !params[:wine][:vineyard_id].empty? && !params[:vineyard][:name].empty?
+      @user = User.find(session[:user_id])
+      @wine = Wine.create(name: params[:name], price_per_bottle: params[:price_per_bottle], color: params[:color], scent: params[:scent], taste: params[:taste], summary: params[:summary], rating: params[:rating], vineyard_name: params[:vineyard][:name])
       flash[:message] = "Successfully Added"
       redirect to "wines/#{@wine.id}"
 
