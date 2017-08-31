@@ -6,10 +6,10 @@
 
 <form action="/wines" method="POST">
 <label for="name">Name:</label>
-<input type="text" name="name">
+<input type="text" name="name" required>
 <br>
 <label for="price_per_bottle">Price per Bottle: $ </label>
-<input type="text" name="price_per_bottle"></input>
+<input type="text" name="price_per_bottle" required></input>
 <br>
 <select name="color">
     <option value="Red">Red</option>
@@ -18,13 +18,13 @@
 </select>
 <br>
 <label for="scent">Scent(s):</label>
-<input type="text" name="scent">
+<input type="text" name="scent" required>
 <br>
 <label for="taste">Taste(s):</label>
-<input type="text" name="taste">
+<input type="text" name="taste" required>
 <br>
 <label for="summary">Final Thoughts:</label>
-<input type="textarea" name="summary">
+<input type="textarea" name="summary" required>
 <br>
 <p>Rating:</p>
   <select name="rating" value="N/A">
