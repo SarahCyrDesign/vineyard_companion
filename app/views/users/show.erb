@@ -1,22 +1,33 @@
-<h1>Welcome, <%=@user.username%></h1>
-<h2>Here are your Vineyards!</h2>
+<h1>Welcome, <%=current_user.username%></h1>
 
 <h2>Here are your Vineyards and Wines!</h2>
 
-<%@user.vineyards.each do |vineyard|%>
-<p><a href="vineyards/<%= vineyard.id %>"><%= vineyard.name %></a></p>
-
+<%current_user.vineyards.each do |vineyard|%>
+<p>Vineyard: <a href="vineyards/<%= vineyard.id %>"><%= vineyard.name %></a></p>
+<br>
+<br>
+<br>
 <h2> Wines </h2>
 <% vineyard.wines.each do |wine| %>
-<%=wine.name%>
+<p><a href="wines/<%= wine.id %>"><%= wine.name %></a></p>
 <%end%>
 <%end%>
-
+<br>
+<br>
+<br>
+<br>
+<form action="/users/<%= current_user.id %>/delete" method="post">
+      <input type="hidden" id="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete Account">
+</form>
 
 <h3> Continue on your wine Journey!</h3>
 <a class= "button" href="/vineyards/new">Add a Vineyard or Winery</a>
+<br>
 <a class= "button" href="/vineyards">Vineyard/Winery List</a>
+<br>
 <a class= "button" href="/wines/new">Add a Wine</a>
+<br>
 <a class= "button" href="/wines">Wine List</a>
 <br>
 <a href="/logout">Log out</a>

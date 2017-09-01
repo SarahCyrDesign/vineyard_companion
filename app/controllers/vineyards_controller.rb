@@ -14,7 +14,6 @@ class VineyardsController < ApplicationController
     if logged_in?
       erb :'/vineyards/new'
     else
-      flash[:message] = "Please login to continue"
       redirect to '/login'
     end
   end
