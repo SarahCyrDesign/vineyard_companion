@@ -1,8 +1,22 @@
 <h1>Welcome, <%=@user.username%></h1>
 <h2>Here are your Vineyards!</h2>
 
+<h2>Here are your Vineyards and Wines!</h2>
+
 <%@user.vineyards.each do |vineyard|%>
-  <p><a href="/vineyards/<%=vineyard.id%>"><%= vineyard.name %></p>
-<% end %>
+<p><a href="vineyards/<%= vineyard.id %>"><%= vineyard.name %></a></p>
+
+<h2> Wines </h2>
+<% vineyard.wines.each do |wine| %>
+<%=wine.name%>
+<%end%>
+<%end%>
+
+
+<h3> Continue on your wine Journey!</h3>
+<a class= "button" href="/vineyards/new">Add a Vineyard or Winery</a>
+<a class= "button" href="/vineyards">Vineyard/Winery List</a>
+<a class= "button" href="/wines/new">Add a Wine</a>
+<a class= "button" href="/wines">Wine List</a>
 <br>
 <a href="/logout">Log out</a>
