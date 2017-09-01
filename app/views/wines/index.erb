@@ -5,10 +5,10 @@
 <% current_user.wines.all.sort_by.each do |wine| %>
 <p><a href="/wines/<%=wine.id%>"><%= wine.name %></p>
 <a href="vineyards/<%= wine.vineyard.id %>"><%= wine.vineyard.name %></a>
+<br>
 <a class= "button" href="/wines/<%=wine.id%>/edit">Edit</a>
 <%end%>
-
-
+<br>
 <a class= "button" href="/wines/new">Add a new Wine</a>
 <br>
 <a href="/logout">Log out</a>

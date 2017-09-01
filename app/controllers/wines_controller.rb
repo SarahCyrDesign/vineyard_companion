@@ -2,7 +2,6 @@ class WinesController < ApplicationController
 
   get '/wines' do
      if logged_in?
-      #  @user = current_user
        @wines = current_user.wines
        erb :'/wines/index'
      else
@@ -23,6 +22,7 @@ class WinesController < ApplicationController
 
   post '/wines' do
     redirect to '/' if !session[:user_id]
+    flash[:message] = "Please login to continue"
 
     @wine = Wine.new(params[:wine])
     @wine.user_id = User.find(session[:user_id]).id
@@ -33,7 +33,6 @@ class WinesController < ApplicationController
       flash[:message] = "Successfully Added"
       redirect to "wines/#{@wine.id}"
     else
-      binding.pry
       # flash[:message] = @wine.errors.full_messages.join('')
       redirect to "wines/new"
     end
@@ -53,7 +52,7 @@ class WinesController < ApplicationController
 
   get '/wines/:id/edit' do
     @wine = Wine.find_by_id(params[:id])
-    if logged_in? # && @wine.user_id == current_user.id #need to work out for edit form
+    if logged_in?
       erb :'/wines/edit'
     else
       flash[:message] = "Please login to continue"
@@ -67,7 +66,7 @@ class WinesController < ApplicationController
     @wine = Wine.find_by_id(params[:id])
     if !session[:user_id]
       redirect to '/'
-    elsif session[:user_id] #!= @wine.user_id #need to work on
+    elsif session[:user_id]
       redirect to '/wines'
     elsif params[:name].empty? && params[:price_per_bottle].empty? && params[:color].empty? && params[:scent].empty? && params[:taste].empty? && params[:summary].empty? && params[:rating].empty? && params[:wine][:vineyard_id].empty?
       redirect to "/wines/#{@wine.id}/edit"
