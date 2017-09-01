@@ -1,15 +1,17 @@
 <% if flash.has?(:message) %>
   <p style="color:#c40707;"><%= flash[:message] %> </p>
 <% end %>
-
 <% @vineyards.each do |vineyard| %>
-<a href="vineyards/<%= vineyard.id %>"><%= vineyard.name %></a>
+<br>
+<br>
+<h2>Vineyard</h2>
+<h3><a href="vineyards/<%= vineyard.id %>"><%= vineyard.name %></a></h3>
 <h3>Located at: <%=vineyard.location%></h3>
 <h3>Contact: <%=vineyard.phone_number%></h3>
 <p>Review: <%=vineyard.review%></p>
-
 <h2> Wines </h2>
 <% vineyard.wines.each do |wine| %>
-<%=wine.name%>
+<h3><%=wine.name%></h3>
+<h4>Rating: <%=wine.rating%> out of 5 stars</h4>
 <%end%>
 <%end%>
