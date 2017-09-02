@@ -2,7 +2,7 @@ class WinesController < ApplicationController
 
   get '/wines' do
      if logged_in?
-       @wines = current_user.wines
+       @wines = Wine.all
        erb :'/wines/index'
      else
        redirect to '/login'
@@ -33,7 +33,6 @@ class WinesController < ApplicationController
       flash[:message] = "Successfully Added"
       redirect to "wines/#{@wine.id}"
     else
-      # flash[:message] = @wine.errors.full_messages.join('')
       redirect to "wines/new"
     end
   end
@@ -74,8 +73,8 @@ class WinesController < ApplicationController
       @wine.update(name: params[:name], price_per_bottle: params[:price_per_bottle], color: params[:color], scent: params[:scent], taste: params[:taste], summary: params[:summary], rating: params[:rating], vineyard_id: params[:wine][:vineyard_id])
       @wine.save
       redirect to "wines/#{@wine.id}"
-    end
   end
+end
 
 
   delete '/wines/:id' do
@@ -83,8 +82,10 @@ class WinesController < ApplicationController
       @wine = Wine.find_by_id(params[:id])
       if @wine.user_id == current_user.id
         @wine.delete
+        flash[:message] = "Wine is now deleted"
         redirect to '/wines'
       else
+        flash[:message] = "You cannot delete another User's Wine"
         redirect to '/wines'
       end
      else

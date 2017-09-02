@@ -1,8 +1,8 @@
 <% if flash.has?(:message) %>
   <p style="color:#c40707;"><%= flash[:message] %> </p>
 <% end %>
-
-<% current_user.wines.all.sort_by.each do |wine| %>
+<h2> Here are the most recent Wines and Their vineyards </h2>
+<% @wines.each do |wine| %>
 <br>
 <br>
 <h3>Wine:</h3>

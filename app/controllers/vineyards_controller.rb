@@ -82,6 +82,7 @@ class VineyardsController < ApplicationController
         flash[:message] = "Successfully Deleted!"
         redirect to '/vineyards'
       else
+        flash[:message] = "You cannot delete another User's Vineyard"
         redirect to '/vineyards'
       end
      else
