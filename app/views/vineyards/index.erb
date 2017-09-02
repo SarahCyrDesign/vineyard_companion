@@ -1,6 +1,7 @@
 <% if flash.has?(:message) %>
   <p style="color:#c40707;"><%= flash[:message] %> </p>
 <% end %>
+<h2> Here are the most recent Vineyards and Wine Ratings </h2>
 <% @vineyards.each do |vineyard| %>
 <br>
 <br>
@@ -13,5 +14,6 @@
 <% vineyard.wines.each do |wine| %>
 <h3><%=wine.name%></h3>
 <h4>Rating: <%=wine.rating%> out of 5 stars</h4>
+<br>
 <%end%>
 <%end%>
