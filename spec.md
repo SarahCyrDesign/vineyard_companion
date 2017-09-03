@@ -23,7 +23,7 @@ Specs:
   - A User cannot progress further into other views pages without being logged_in
 
 - [x] Ensure that users can't modify content created by other users
-
+  - User is unable to edit/delete content and a rack flash message alerts with a message "You cannot delete another User's Wine"
 
 - [x] Include user input validations
   - A User will receive successful validations on the views pages utilizing the rack flash gem after input
@@ -32,7 +32,7 @@ Specs:
 - [x] Display validation failures to user with error message (example form URL e.g. /posts/new)
   - A User will be shown various messages on the views pages utilizing the rack flash gem
 
-- [ ] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
+- [x] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
   - README provides a thorough explanation of descriptions, usage and contributions
 
 
