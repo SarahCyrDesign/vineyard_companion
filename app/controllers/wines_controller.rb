@@ -50,15 +50,19 @@ class WinesController < ApplicationController
 
 
   get '/wines/:id/edit' do
-    @wine = Wine.find_by_id(params[:id])
     if logged_in?
-      erb :'/wines/edit'
+      @wine = Wine.find_by_id(params[:id])
+      if @wine.user_id == current_user.id
+        erb :'/wines/edit'
+      else
+        flash[:message] = "You cannot edit another User's Wine"
+        redirect to '/'
+      end
     else
       flash[:message] = "Please login to continue"
-      redirect '/login'
-    end
+      redirect to '/login'
   end
-
+end
 
 
   patch '/wines/:id' do
