@@ -48,14 +48,19 @@ class VineyardsController < ApplicationController
 
 
   get '/vineyards/:id/edit' do
+    if logged_in?
     @vineyard = Vineyard.find_by_id(params[:id])
-    if logged_in? && @vineyard.user_id == current_user.id
+    if @vineyard.user_id == current_user.id
       erb :'/vineyards/edit'
     else
-      flash[:message] = "Please login to continue"
-      redirect '/login'
+      flash[:message] = "You cannot edit another User's Vineyard/Winery"
+      redirect to '/'
     end
-  end
+  else
+    flash[:message] = "Please login to continue"
+    redirect to '/login'
+end
+end
 
 
   patch '/vineyards/:id' do
