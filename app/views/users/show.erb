@@ -2,7 +2,7 @@
 
 <h2>Here are your Vineyards and Wines!</h2>
 
-<%current_user.vineyards.each do |vineyard|%>
+<%@user.vineyards.each do |vineyard|%>
 <p>Vineyard: <a href="vineyards/<%= vineyard.id %>"><%= vineyard.name %></a></p>
 <br>
 <br>
@@ -16,7 +16,7 @@
 <br>
 <br>
 <br>
-<form action="/users/<%= current_user.id %>/delete" method="post">
+<form action="/users/<%= @user.id %>/delete" method="post">
       <input type="hidden" id="hidden" name="_method" value="DELETE">
     <input type="submit" value="Delete Account">
 </form>

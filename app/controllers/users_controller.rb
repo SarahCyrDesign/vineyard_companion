@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 
   get '/users/:id' do
      if logged_in?
-       @user = current_user
+       @user = User.find(params[:id])
        erb :'users/show'
      else
        flash[:message] = "Please create an account or enter your login info"

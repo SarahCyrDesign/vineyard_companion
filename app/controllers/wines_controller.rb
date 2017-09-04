@@ -24,10 +24,24 @@ class WinesController < ApplicationController
     redirect to '/' if !session[:user_id]
     flash[:message] = "Please login to continue"
 
-    @wine = Wine.new(params[:wine])
+    @wine = Wine.find_by(name: params[:wine][:name], user_id: current_user.id)
+      if !@wine.nil?
+        flash[:message] = "This wine already exists"
+        redirect to 'wines/new'
+      else
+        @wine = Wine.new(params[:wine])
+      end
     @wine.user_id = User.find(session[:user_id]).id
     if params[:wine][:vineyard_id].nil? && !params[:vineyard][:name].empty?
-      @wine.vineyard = Vineyard.create(params[:vineyard])
+      # checking id vineyard already exists and checks with current_user id
+      @vineyard = Vineyard.find_by(name: params[:vineyard][:name], user_id: current_user.id)
+        if @vineyard.nil?
+          @wine.vineyard = Vineyard.new(params[:vineyard])
+          @wine.vineyard.user_id = current_user.id
+        else
+          flash[:message] = "This vineyard already exists"
+          redirect to 'wines/new'
+        end
     end
     if @wine.save
       flash[:message] = "Successfully Added"
