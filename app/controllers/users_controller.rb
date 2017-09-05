@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   get '/signup' do
     if logged_in?
-      erb :'users/show'
+      erb :'vineyards/index'
     else
       flash[:message] = "Please sign in to continue"
       erb :'/users/signup'
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
 
   get '/login' do
     if logged_in?
-      erb :'users/show'
+      erb :'vineyards/index'
     else
       flash[:message] = "Please create an account or enter your login info"
       erb :'/users/login'
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     user = User.find_by(:username => params[:username])
       if user && user.authenticate(params[:password])
         session[:user_id] = user.id
-        erb :'users/show'
+        erb :'vineyards/index'
       else
         flash[:message] = "login info is incorrect, please try again"
         redirect to '/login'
@@ -79,7 +79,7 @@ class UsersController < ApplicationController
       flash[:message] = "You are now logged out"
       redirect to '/login'
     else
-      redirect to '/users'
+      redirect to '/'
     end
   end
 
