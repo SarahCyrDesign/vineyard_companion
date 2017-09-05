@@ -79,20 +79,37 @@ class WinesController < ApplicationController
 end
 
 
-  patch '/wines/:id' do
-    @wine = Wine.find_by_id(params[:id])
-    if !session[:user_id]
-      redirect to '/'
-    elsif session[:user_id]
-      redirect to '/wines'
-    elsif params[:name].empty? && params[:price_per_bottle].empty? && params[:color].empty? && params[:scent].empty? && params[:taste].empty? && params[:summary].empty? && params[:rating].empty? && params[:wine][:vineyard_id].empty?
-      redirect to "/wines/#{@wine.id}/edit"
-    else
-      @wine.update(name: params[:name], price_per_bottle: params[:price_per_bottle], color: params[:color], scent: params[:scent], taste: params[:taste], summary: params[:summary], rating: params[:rating], vineyard_id: params[:wine][:vineyard_id])
-      @wine.save
+patch '/wines/:id' do
+  redirect to '/' if !session[:user_id]
+  flash[:message] = "Please login to continue"
+
+    @wine = Wine.find_by(name: params[:wine][:name], user_id: current_user.id)
+      if !@wine.nil?
+        flash[:message] = "This wine already exists"
+        redirect to "/wines/#{@wine.id}/edit"
+      else
+        @wine = Wine.update(params[:wine])
+      end
+    @wine.user_id = User.find(session[:user_id]).id
+    if params[:wine][:vineyard_id].nil? && !params[:vineyard][:name].empty?
+
+      # checking id vineyard already exists and checks with current_user id
+      @vineyard = Vineyard.find_by(name: params[:vineyard][:name], user_id: current_user.id)
+        if @vineyard.nil?
+          @wine.vineyard = Vineyard.new(params[:vineyard])
+          @wine.vineyard.user_id = current_user.id
+        else
+          flash[:message] = "This vineyard already exists"
+          redirect to "/wines/#{@wine.id}/edit"
+        end
+    end
+    if @wine.save
+      flash[:message] = "Successfully updated"
       redirect to "wines/#{@wine.id}"
+    else
+      redirect to "/wines/#{@wine.id}/edit"
+    end
   end
-end
 
 
   delete '/wines/:id' do
