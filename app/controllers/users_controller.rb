@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     user = User.new(:username => params[:username], :password => params[:password])
       if user.save
         session[:user_id] = user.id
-        erb :'users/show'
+        erb :'vineyards/index'
       else
         flash[:message] = "Please fill in all fields"
         redirect to '/users/signup'
@@ -82,7 +82,4 @@ class UsersController < ApplicationController
       redirect to '/'
     end
   end
-
-
-
 end
