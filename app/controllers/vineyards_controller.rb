@@ -5,6 +5,7 @@ class VineyardsController < ApplicationController
        @vineyards = Vineyard.all
        erb :'/vineyards/index'
      else
+       flash[:message] = "Please login to continue"
        redirect to '/login'
      end
   end
