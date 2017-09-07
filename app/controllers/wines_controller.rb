@@ -83,17 +83,9 @@ patch '/wines/:id' do
   redirect to '/' if !session[:user_id]
   flash[:message] = "Please login to continue"
 
-    @wine = Wine.find_by(name: params[:wine][:name], user_id: current_user.id)
-      if !@wine.nil?
-        flash[:message] = "This wine already exists"
-        redirect to "/wines/#{@wine.id}/edit"
-      else
-        @wine = Wine.update(params[:wine])
-      end
-    @wine.user_id = User.find(session[:user_id]).id
+    @wine = Wine.find_by_id(params[:id])
     if params[:wine][:vineyard_id].nil? && !params[:vineyard][:name].empty?
 
-      # checking id vineyard already exists and checks with current_user id
       @vineyard = Vineyard.find_by(name: params[:vineyard][:name], user_id: current_user.id)
         if @vineyard.nil?
           @wine.vineyard = Vineyard.new(params[:vineyard])
