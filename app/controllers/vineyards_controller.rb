@@ -25,9 +25,9 @@ class VineyardsController < ApplicationController
     flash[:message] = "Please login to continue"
 
     # checking id vineyard already exists and checks with current_user id
-    @vineyard = Vineyard.find_by(name: params[:vineyard][:name], user_id: current_user.id)
+    @vineyard = Vineyard.find_by(name: params[:name])
       if @vineyard.nil?
-          @vineyard = Vineyard.new(params[:vineyard])
+          @vineyard = Vineyard.new(params)
           @vineyard.user_id = current_user.id
       else
         flash[:message] = "This vineyard already exists"
@@ -56,39 +56,33 @@ class VineyardsController < ApplicationController
   get '/vineyards/:id/edit' do
     if logged_in?
     @vineyard = Vineyard.find_by_id(params[:id])
-    if @vineyard.user_id == current_user.id
-      erb :'/vineyards/edit'
+      if @vineyard.user_id == current_user.id
+        erb :'/vineyards/edit'
+      else
+        flash[:message] = "You cannot edit another User's Vineyard/Winery"
+        redirect to '/vineyards'
+      end
     else
-      flash[:message] = "You cannot edit another User's Vineyard/Winery"
-      redirect to '/'
+      flash[:message] = "Please login to continue"
+      redirect to '/login'
     end
-  else
-    flash[:message] = "Please login to continue"
-    redirect to '/login'
-end
-end
+  end
 
 
   patch '/vineyards/:id' do
-    redirect to '/' if !session[:user_id]
-        flash[:message] = "Please login to continue"
-
-        # checking id vineyard already exists and checks with current_user id
-        @vineyard = Vineyard.find_by(name: params[:vineyard][:name], user_id: current_user.id)
-          if @vineyard.nil?
-              @vineyard = Vineyard.update(params[:vineyard])
-              @vineyard.user_id = current_user.id
-          else
-            flash[:message] = "This vineyard already exists"
-            redirect to "/vineyards/#{@vineyard.id}/edit"
-          end
-          if @vineyard.save
-            flash[:message] = "Successfully updated"
-            redirect to "vineyards/#{@vineyard.id}"
-          else
-            redirect to "/vineyards/#{@vineyard.id}/edit"
-          end
-        end
+    if !session[:user_id]
+      flash[:message] = "Please login to continue"
+      redirect to '/'
+    end
+    @vineyard = Vineyard.find_by_id(params[:id])
+    if @vineyard.update(params[:vineyard])
+      flash[:message] = "Successfully updated"
+      redirect to "/vineyards/#{@vineyard.id}"
+    else
+      flash[:message] = @vineyard.errors.full_messages.uniq.join(', ')
+      redirect to "/vineyards/#{@vineyard.id}/edit"
+    end
+  end
 
   delete '/vineyards/:id' do
     if logged_in? && current_user
