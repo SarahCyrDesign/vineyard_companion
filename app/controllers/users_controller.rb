@@ -2,9 +2,8 @@ class UsersController < ApplicationController
 
   get '/signup' do
     if logged_in?
-      erb :'vineyards/index'
+      redirect to '/vineyards'
     else
-      flash[:message] = "Please sign in to continue"
       erb :'/users/signup'
    end
  end
@@ -15,7 +14,7 @@ class UsersController < ApplicationController
     user = User.new(:username => params[:username], :password => params[:password])
       if user.save
         session[:user_id] = user.id
-        erb :'vineyards/index'
+        redirect to '/vineyards'
       else
         flash[:message] = "Please fill in all fields"
         redirect to '/users/signup'
