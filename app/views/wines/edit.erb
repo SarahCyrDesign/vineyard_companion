@@ -2,6 +2,15 @@
   <p style="color:#c40707;"><%= flash[:message] %> </p>
 <% end %>
 
+<ul>
+<li><a class= "button" href="/vineyards/new">Add a Vineyard or Winery</a></li>
+<li><a class= "button" href="/vineyards">Vineyard/Winery List</a></li>
+<li><a class= "button" href="/wines/new">Add a Wine</a></li>
+<li><a class= "button" href="/wines">Wine List</a></li>
+<li><a class= "button" href="/users/<%= current_user.id %>">My Wines and Vineyards</a></li>
+<li><a href="/logout">Logout</a></li>
+</ul>
+
 <h1>Edit <%= @wine.name %></h1>
 
 <form action="/wines/<%= @wine.id %>" method="POST">
