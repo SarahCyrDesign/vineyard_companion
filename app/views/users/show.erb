@@ -1,20 +1,16 @@
 <h1>Welcome, <%=current_user.username%></h1>
 
 <h2>Here are your Vineyards and Wines!</h2>
-
 <%@user.vineyards.each do |vineyard|%>
-<p>Vineyard: <a href="vineyards/<%= vineyard.id %>"><%= vineyard.name %></a></p>
+<h3><a href="/vineyards/<%= vineyard.id %>"><%= vineyard.name %></a></h3>
 <br>
 <br>
 <br>
-<h2> Wines </h2>
 <% vineyard.wines.each do |wine| %>
-<p><a href="wines/<%= wine.id %>"><%= wine.name %></a></p>
+<i>Wine from <%= wine.vineyard.name %></i>
+<h3><a href="/wines/<%=wine.id%>"><%= wine.name %></a></h3>
 <%end%>
 <%end%>
-<br>
-<br>
-<br>
 <br>
 <form action="/users/<%= @user.id %>/delete" method="post">
       <input type="hidden" id="hidden" name="_method" value="DELETE">
