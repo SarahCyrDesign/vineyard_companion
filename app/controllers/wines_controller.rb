@@ -81,28 +81,19 @@ end
 
 
 patch '/wines/:id' do
-  redirect to '/' if !session[:user_id]
-  flash[:message] = "Please login to continue"
-
-    @wine = Wine.find_by_id(params[:id])
-    if params[:wine][:vineyard_id].nil? && !params[:vineyard][:name].empty?
-
-      @vineyard = Vineyard.find_by(name: params[:vineyard][:name], user_id: current_user.id)
-        if @vineyard.nil?
-          @wine.vineyard = Vineyard.new(params[:vineyard])
-          @wine.vineyard.user_id = current_user.id
-        else
-          flash[:message] = "This vineyard already exists"
-          redirect to "/wines/#{@wine.id}/edit"
-        end
-    end
-    if @wine.save
-      flash[:message] = "Successfully updated"
-      redirect to "wines/#{@wine.id}"
-    else
-      redirect to "/wines/#{@wine.id}/edit"
-    end
+  if !session[:user_id]
+    flash[:message] = "Please login to continue"
+    redirect to '/login'
   end
+  @wine = Wine.find_by_id(params[:id])
+  if @wine.update(params[:wine])
+    flash[:message] = "Successfully updated"
+    redirect to "/wines/#{@wine.id}"
+  else
+    flash[:message] = @wine.errors.full_messages.uniq.join(', ')
+    redirect to "/wines/#{@wine.id}/edit"
+  end
+end
 
 
   delete '/wines/:id' do
