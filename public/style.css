@@ -75,7 +75,7 @@ body {
 }
 
 /*Button styles*/
-.button-index-1, .button-index-2 {
+.button-index-1, .button-index-2, .button-index-3 {
     text-align :center;
     display: block;
     color: #ffffff;
@@ -98,9 +98,13 @@ body {
   position: absolute;
   top: 120%;
   left: 40%;
-
 }
 
+.button-index-3 {
+  position: absolute;
+  top: 130%;
+  left: 40%;
+}
 
 /* FOOTER*/
 .bottom-content {
