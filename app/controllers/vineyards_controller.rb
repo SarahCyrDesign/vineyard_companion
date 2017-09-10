@@ -15,6 +15,7 @@ class VineyardsController < ApplicationController
     if logged_in?
       erb :'/vineyards/new'
     else
+      flash[:message] = "Please login to continue"
       redirect to '/login'
     end
   end
@@ -48,7 +49,7 @@ class VineyardsController < ApplicationController
       erb :'/vineyards/show'
     else
       flash[:message] = "Please login to continue"
-      redirect '/login'
+      redirect to '/login'
     end
   end
 
@@ -72,7 +73,7 @@ class VineyardsController < ApplicationController
   patch '/vineyards/:id' do
     if !session[:user_id]
       flash[:message] = "Please login to continue"
-      redirect to '/'
+      redirect to '/login'
     end
     @vineyard = Vineyard.find_by_id(params[:id])
     if @vineyard.update(params[:vineyard])

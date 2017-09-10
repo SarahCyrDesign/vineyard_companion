@@ -5,6 +5,7 @@ class WinesController < ApplicationController
        @wines = Wine.all
        erb :'/wines/index'
      else
+       flash[:message] = "Please login to continue"
        redirect to '/login'
      end
   end
@@ -70,7 +71,7 @@ class WinesController < ApplicationController
         erb :'/wines/edit'
       else
         flash[:message] = "You cannot edit another User's Wine"
-        redirect to '/'
+        redirect to '/wines'
       end
     else
       flash[:message] = "Please login to continue"
