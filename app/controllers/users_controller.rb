@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     user = User.new(:username => params[:username], :password => params[:password])
       if user.save
         session[:user_id] = user.id
+        flash[:message] = "You are now logged in!"
         redirect to '/vineyards'
       else
         flash[:message] = "Please fill in all fields"
@@ -24,9 +25,8 @@ class UsersController < ApplicationController
 
   get '/login' do
     if logged_in?
-      erb :'vineyards/index'
+      redirect to '/vineyards'
     else
-      flash[:message] = "Please create an account or enter your login info"
       erb :'/users/login'
     end
   end
@@ -36,7 +36,8 @@ class UsersController < ApplicationController
     user = User.find_by(:username => params[:username])
       if user && user.authenticate(params[:password])
         session[:user_id] = user.id
-        erb :'vineyards/index'
+        flash[:message] = "You are now logged in!"
+        redirect to '/vineyards'
       else
         flash[:message] = "login info is incorrect, please try again"
         redirect to '/login'
@@ -51,7 +52,7 @@ class UsersController < ApplicationController
        erb :'users/show'
      else
        flash[:message] = "Please create an account or enter your login info"
-       erb :'/users/login'
+       redirect to '/login'
      end
   end
 
@@ -67,7 +68,7 @@ class UsersController < ApplicationController
          redirect to "/"
        else
          flash[:message] = "Please create an account or enter your login info"
-         erb :'/users/login'
+         redirect to '/login'
      end
  end
 
