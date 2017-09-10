@@ -32,25 +32,25 @@ class WinesController < ApplicationController
       else
         @wine = Wine.new(params[:wine])
       end
-    @wine.user_id = User.find(session[:user_id]).id
-    if params[:wine][:vineyard_id].nil? && !params[:vineyard][:name].empty?
+      @wine.user_id = User.find(session[:user_id]).id
+      if params[:wine][:vineyard_id].nil? && !params[:vineyard][:name].empty?
       # checking id vineyard already exists and checks with current_user id
       @vineyard = Vineyard.find_by(name: params[:vineyard][:name], user_id: current_user.id)
-        if @vineyard.nil?
-          @wine.vineyard = Vineyard.new(params[:vineyard])
-          @wine.vineyard.user_id = current_user.id
-        else
-          flash[:message] = "This vineyard already exists"
-          redirect to 'wines/new'
+      if @vineyard.nil?
+        @wine.vineyard = Vineyard.new(params[:vineyard])
+        @wine.vineyard.user_id = current_user.id
+      else
+        flash[:message] = "This vineyard already exists"
+        redirect to 'wines/new'
         end
-    end
-    if @wine.save
-      flash[:message] = "Successfully Added"
-      redirect to "wines/#{@wine.id}"
-    else
-      redirect to "wines/new"
-    end
-  end
+      end
+      if @wine.save
+        flash[:message] = "Successfully Added"
+        redirect to "wines/#{@wine.id}"
+      else
+        redirect to "wines/new"
+      end
+   end
 
 
   get '/wines/:id' do

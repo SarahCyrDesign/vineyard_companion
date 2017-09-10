@@ -5,15 +5,14 @@
 <% @wines.each do |wine| %>
 <br>
 <br>
-<h3>Wine:</h3>
-<a href="/wines/<%=wine.id%>"><%= wine.name %></a>
-  <h3>Vineyard:</h3>
-<a href="vineyards/<%= wine.vineyard.id %>"><%= wine.vineyard.name %></a>
+<h2>Wine:</h2>
+<h3><a href="/wines/<%=wine.id%>"><%= wine.name %></a></h3>
+  <h2>Vineyard:</h2>
+<h3><a href="vineyards/<%= wine.vineyard.id %>"><%= wine.vineyard.name %></a></h3>
 <br>
-<a class= "button" href="/wines/<%=wine.id%>/edit">Edit</a>
 <%end%>
 <br>
-
+<br>
 <a class= "button" href="/vineyards/new">Add a Vineyard or Winery</a>
 <br>
 <a class= "button" href="/vineyards">Vineyard/Winery List</a>

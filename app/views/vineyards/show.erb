@@ -9,13 +9,12 @@
 <br>
 <form action="/vineyards/<%=@vineyard.id%>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="delete">
-  <button type="submit">Delete</button>
+  <button type="submit">Delete Vineyard/Winery</button>
 </form>
-
-<a class= "button" href="/vineyards/<%=@vineyard.id%>/edit">Edit</a>
-
-
-
+<br>
+<button type="submit"><a class= "button" href="/vineyards/<%=@vineyard.id%>/edit">Edit Vineyard/Winery</a></button>
+<br>
+<br>
 <a class= "button" href="/vineyards/new">Add a Vineyard or Winery</a>
 <br>
 <a class= "button" href="/vineyards">Vineyard/Winery List</a>
