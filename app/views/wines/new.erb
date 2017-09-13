@@ -1,61 +1,70 @@
 <h1>Add a new Wine Tasting Experience!</h1>
-
 <form action="/wines" method="POST">
-<label for="name">Name:</label>
-<input type="text" name="wine[name]" required>
-<br>
-<label for="price_per_bottle">Price per Bottle: $ </label>
-<input type="text" name="wine[price_per_bottle]" required></input>
-<br>
-<label for="color">Type of Wine:</label>
-<br>
-<select name="wine[color]">
-    <option value="Red">Red</option>
-    <option value="White">White</option>
-    <option value="Ros&eacute;">Ros&eacute;</option>
-</select>
-<br>
-<label for="scent">Scent(s):</label>
-<input type="text" name="wine[scent]" required>
-<br>
-<label for="taste">Taste(s):</label>
-<input type="text" name="wine[taste]" required>
-<br>
-<br>
-<label for="summary">Final Thoughts:</label>
-<br>
-<textarea name="wine[summary]" rows="4" cols="50"  required></textarea>
-<br>
-<p>Rating:</p>
-  <select name="wine[rating]" value="N/A">
-    <option value="1">1 star</option>
-    <option value="2">2 stars</option>
-    <option value="3">3 stars</option>
-    <option value="4">4 stars</option>
-    <option value="5">5 stars</option>
-</select>
-<br>
-  <label>Select Vineyard</label>
-<% current_user.vineyards.all.sort_by.each do |vineyard| %>
-  <input type="radio" name="wine[vineyard_id]" id="<%= vineyard.name %>" value="<%=vineyard.id%>"><%=vineyard.name%></input>
-<%end%>
-
-<br></br>
-  <label>or add another Vineyard</label>
-  <br>
-  <label for="name">Name:</label>
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" name="wine[name]" required>
+  </div>
+  <div>
+    <label for="price_per_bottle">Price per Bottle: $ </label>
+    <input type="text" name="wine[price_per_bottle]" required></input>
+  </div>
+  <div>
+    <label for="color">Type of Wine:</label>
+  </div>
+  <div>
+    <select name="wine[color]">
+      <option value="Red">Red</option>
+      <option value="White">White</option>
+      <option value="Ros&eacute;">Ros&eacute;</option>
+    </select>
+  </div>
+  <div>
+    <label for="scent">Scent(s):</label>
+    <input type="text" name="wine[scent]" required>
+  </div>
+  <div>
+    <label for="taste">Taste(s):</label>
+    <input type="text" name="wine[taste]" required>
+  </div>
+  <div>
+    <h4><label for="summary">Final Thoughts:</label></h4>
+    <textarea name="wine[summary]" rows="4" cols="50"  required></textarea>
+  </div>
+  <div>
+    <p>Rating:</p>
+      <select name="wine[rating]" value="N/A">
+      <option value="1">1 star</option>
+      <option value="2">2 stars</option>
+      <option value="3">3 stars</option>
+      <option value="4">4 stars</option>
+      <option value="5">5 stars</option>
+    </select>
+  </div>
+  <div>
+    <label>Select Vineyard</label>
+      <% current_user.vineyards.all.sort_by.each do |vineyard| %>
+      <input type="radio" name="wine[vineyard_id]" id="<%= vineyard.name %>" value="<%=vineyard.id%>"><%=vineyard.name%></input>
+    <%end%>
+    <input type="radio">none</input>
+  </div>
+  <div>
+    <h4>or add another Vineyard</h4>
+    <label for="name">Name:</label>
     <input  type="text" name="vineyard[name]" id="vineyard_name"></input>
-    <br>
+  </div>
+  <div>
     <label for="location">location:</label>
     <input  type="text" name="vineyard[location]" id="vineyard_location"></input>
-    <br>
+  </div>
+  <div>
     <label for="phone_number">Phone Number:</label>
     <input  type="text" name="vineyard[phone_number]" id="vineyard_phone_number"></input>
-    <br>
-    <br>
-    <label for="review">Review:</label>
-    <br>
+  </div>
+  <div>
+    <h4><label for="review">Review:</label></h4>
     <textarea name="vineyard[review]" id="vineyard_review" rows="4" cols="50" ></textarea>
-  <br>
-<input type="submit" value="Submit Wine">
+  </div>
+  <div>
+    <input type="submit" value="Submit Wine">
+  </div>
 </form>
