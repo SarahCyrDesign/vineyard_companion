@@ -1,15 +1,9 @@
 class VineyardsController < ApplicationController
 
   get '/vineyards' do
-     if logged_in?
-       @vineyards = Vineyard.all
-       erb :'/vineyards/index'
-     else
-       flash[:message] = "Please login to continue"
-       redirect to '/login'
-     end
+    @vineyards = Vineyard.all
+    erb :'/vineyards/index'
   end
-
 
   get '/vineyards/new' do
     if logged_in?
@@ -19,7 +13,6 @@ class VineyardsController < ApplicationController
       redirect to '/login'
     end
   end
-
 
   post '/vineyards' do
     redirect to '/' if !session[:user_id]

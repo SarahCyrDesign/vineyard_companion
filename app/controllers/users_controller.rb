@@ -8,18 +8,16 @@ class UsersController < ApplicationController
    end
  end
 
-
-
   post '/signup' do
     user = User.new(:username => params[:username], :password => params[:password])
-      if user.save
-        session[:user_id] = user.id
-        flash[:message] = "You are now logged in!"
-        redirect to '/vineyards'
-      else
-        flash[:message] = "Please fill in all fields"
-        redirect to '/users/signup'
-      end
+    if user.save
+      session[:user_id] = user.id
+      flash[:message] = "You are now logged in!"
+      redirect to '/vineyards'
+    else
+      flash[:message] = user.errors.full_messages.join(', ')
+      erb :'/users/signup'
+    end
   end
 
 

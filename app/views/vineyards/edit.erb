@@ -1,32 +1,21 @@
-<% if flash.has?(:message) %>
-  <p style="color:#c40707;"><%= flash[:message] %> </p>
-<% end %>
-
-<ul>
-<li><a class= "button" href="/vineyards/new">Add a Vineyard or Winery</a></li>
-<li><a class= "button" href="/vineyards">Vineyard/Winery List</a></li>
-<li><a class= "button" href="/wines/new">Add a Wine</a></li>
-<li><a class= "button" href="/wines">Wine List</a></li>
-<li><a class= "button" href="/users/<%= current_user.id %>">My Wines and Vineyards</a></li>
-<li><a href="/logout">Logout</a></li>
-</ul>
-
 <h1>Edit <%= @vineyard.name %></h1>
-
 <form action="/vineyards/<%= @vineyard.id %>" method="POST">
-<input type="hidden" name="_method" value="patch">
-<label for="name">Name:</label>
-<input type="text" name="vineyard[name]" value="<%= @vineyard.name %>">
-<br>
-<label for="location">location:</label>
-<input type="text" name="vineyard[location]" value="<%= @vineyard.location %>">
-<br>
-<label for="phone_number">Phone Number:</label>
-<input type="text" name="vineyard[phone_number]" value="<%= @vineyard.phone_number%>">
-<br>
-<label for="review">Review:</label>
-<input type="text" name="vineyard[review]" value="<%= @vineyard.review %>">
-<br>
-
-<input type="submit" value="Submit">
+  <input type="hidden" name="_method" value="patch">
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" name="vineyard[name]" value="<%= @vineyard.name %>">
+  </div>
+  <div>
+    <label for="location">location:</label>
+    <input type="text" name="vineyard[location]" value="<%= @vineyard.location %>">
+  </div>
+  <div>
+    <label for="phone_number">Phone Number:</label>
+    <input type="text" name="vineyard[phone_number]" value="<%= @vineyard.phone_number%>">
+  </div>
+  <div>
+    <label for="review">Review:</label>
+    <input type="text" name="vineyard[review]" value="<%= @vineyard.review %>">
+  </div>
+  <input type="submit" value="Submit">
 </form>
