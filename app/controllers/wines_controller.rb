@@ -45,13 +45,8 @@ class WinesController < ApplicationController
   end
 
   get '/wines/:id' do
-    if logged_in?
-      @wine = Wine.find_by_id(params[:id])
-      erb :'/wines/show'
-    else
-      flash[:message] = "Please login to continue"
-      redirect '/login'
-    end
+    @wine = Wine.find_by_id(params[:id])
+    erb :'/wines/show'
   end
 
 

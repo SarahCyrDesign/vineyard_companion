@@ -8,11 +8,13 @@
 <h3>From: <%= @wine.vineyard.name %></h3>
 
 <br>
+<% if @wine.user == current_user %>
 <form action="/wines/<%=@wine.id%>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <button type="submit">Delete Wine</button>
 </form>
 <br>
 <button type="submit"><a class= "button" href="/wines/<%=@wine.id%>/edit">Edit Wine</a></button>
+<% end %>
 <br>
 <br>

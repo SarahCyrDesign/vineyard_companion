@@ -37,13 +37,8 @@ class VineyardsController < ApplicationController
 
 
   get '/vineyards/:id' do
-    if logged_in?
-      @vineyard = Vineyard.find_by_id(params[:id])
-      erb :'/vineyards/show'
-    else
-      flash[:message] = "Please login to continue"
-      redirect to '/login'
-    end
+    @vineyard = Vineyard.find_by_id(params[:id])
+    erb :'/vineyards/show'
   end
 
 
