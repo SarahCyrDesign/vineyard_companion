@@ -17,7 +17,6 @@ class VineyardsController < ApplicationController
   post '/vineyards' do
     redirect to '/login' if !logged_in?
     flash[:message] = "Please login to continue"
-    # checking id vineyard already exists and checks with current_user id
     @vineyard = Vineyard.find_by(name: params[:name])
     if @vineyard.nil?
       @vineyard = Vineyard.new(params)
@@ -26,7 +25,6 @@ class VineyardsController < ApplicationController
       flash[:message] = "This vineyard already exists"
       redirect to 'vineyards/new'
     end
-
     if @vineyard.save
       flash[:message] = "Successfully Added"
       redirect to "vineyards/#{@vineyard.id}"
@@ -59,12 +57,9 @@ class VineyardsController < ApplicationController
 
 
   patch '/vineyards/:id' do
-    if !session[:user_id]
-      flash[:message] = "Please login to continue"
-      redirect to '/login'
-    end
+    redirect to '/login' if !logged_in?
+    flash[:message] = "Please login to continue"
     @vineyard = Vineyard.find_by_id(params[:id])
-
     if @vineyard.update(params[:vineyard])
       flash[:message] = "Successfully updated"
       redirect to "/vineyards/#{@vineyard.id}"
