@@ -7,12 +7,11 @@
     <h3>Contact: <%=vineyard.phone_number%></h3>
     <p>Review: <%=vineyard.review%></p>
   </div>
-<div>
+  <div>
   <h2> Wines </h2>
     <% vineyard.wines.each do |wine| %>
       <h3><%=wine.name%></h3>
-      <h4>Rating: <%=wine.rating%> out of 5 stars</h4>
-</div>
-<br>
-    <%end%>
+      <h4>Rating: <%=wine.rating%> out of 5 stars</h4><br>
   <%end%>
+</div><br>
+<%end%>

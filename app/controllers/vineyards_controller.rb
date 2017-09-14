@@ -26,6 +26,7 @@ class VineyardsController < ApplicationController
       flash[:message] = "This vineyard already exists"
       redirect to 'vineyards/new'
     end
+
     if @vineyard.save
       flash[:message] = "Successfully Added"
       redirect to "vineyards/#{@vineyard.id}"
@@ -44,12 +45,12 @@ class VineyardsController < ApplicationController
   get '/vineyards/:id/edit' do
     if logged_in?
       @vineyard = Vineyard.find_by_id(params[:id])
-    if @vineyard.user_id == current_user.id
-      erb :'/vineyards/edit'
-    else
-      flash[:message] = "You cannot edit another User's Vineyard/Winery"
-      redirect to '/vineyards'
-    end
+      if @vineyard.user_id == current_user.id
+        erb :'/vineyards/edit'
+      else
+        flash[:message] = "You cannot edit another User's Vineyard/Winery"
+        redirect to '/vineyards'
+      end
     else
       flash[:message] = "Please login to continue"
       redirect to '/login'
@@ -63,6 +64,7 @@ class VineyardsController < ApplicationController
       redirect to '/login'
     end
     @vineyard = Vineyard.find_by_id(params[:id])
+
     if @vineyard.update(params[:vineyard])
       flash[:message] = "Successfully updated"
       redirect to "/vineyards/#{@vineyard.id}"
@@ -75,14 +77,14 @@ class VineyardsController < ApplicationController
   delete '/vineyards/:id' do
     if logged_in? && current_user
       @vineyard = Vineyard.find_by_id(params[:id])
-    if @vineyard.user_id == current_user.id
-      @vineyard.delete
-      flash[:message] = "Successfully Deleted!"
-      redirect to '/vineyards'
-    else
-      flash[:message] = "You cannot delete another User's Vineyard"
-      redirect to '/vineyards'
-    end
+      if @vineyard.user_id == current_user.id
+        @vineyard.delete
+        flash[:message] = "Successfully Deleted!"
+        redirect to '/vineyards'
+      else
+        flash[:message] = "You cannot delete another User's Vineyard"
+        redirect to '/vineyards'
+      end
     else
       flash[:message] = "Please login to continue"
       redirect to '/login'
