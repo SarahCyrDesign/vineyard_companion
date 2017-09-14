@@ -1,40 +1,48 @@
 <h1>Edit <%= @wine.name %></h1>
-
-<form action="/wines/<%= @wine.id %>" method="POST">
-<input type="hidden" name="_method" value="patch">
-<label for="name">Name:</label>
-<input type="text" name="wine[name]" value="<%= @wine.name %>">
-<br>
-<label for="price_per_bottle">Price per Bottle: $ </label>
-<input type="text" name="wine[price_per_bottle]" value="<%= @wine.price_per_bottle %>"</input>
-<br>
-<label for="color">Type of Wine:</label>
-<%= @wine.color %>
-<br>
-<select name="wine[color]">
-    <option value="Red">Red</option>
-    <option value="White">White</option>
-    <option value="Ros&eacute;">Ros&eacute;</option>
-</select>
-<br>
-<label for="scent">Scent(s):</label>
-<input type="text" name="wine[scent]" value="<%= @wine.scent %>" >
-<br>
-<label for="taste">Taste(s):</label>
-<input type="text" name="wine[taste]" value="<%= @wine.taste %>">
-<br>
-<label for="summary">Final Thoughts:</label>
-<input type="textarea" name="wine[summary]" value="<%= @wine.summary %>">
-<br>
-<label for="rating"> Rating: <%= @wine.rating %> out of 5 stars</label>
-<br>
-  <select name="wine[rating]">
-    <option value="1">1 star</option>
-    <option value="2">2 stars</option>
-    <option value="3">3 stars</option>
-    <option value="4">4 stars</option>
-    <option value="5">5 stars</option>
-</select>
-<br>
-<input type="submit" value="Submit">
-</form>
+  <form action="/wines/<%= @wine.id %>" method="POST">
+  <input type="hidden" name="_method" value="patch">
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" name="wine[name]" value="<%= @wine.name %>">
+    </div>
+    <div>
+      <label for="price_per_bottle">Price per Bottle: $ </label>
+      <input type="text" name="wine[price_per_bottle]" value="<%= @wine.price_per_bottle %>"</input>
+    </div>
+    <div>
+      <label for="color">Type of Wine:</label>
+      <%= @wine.color %>
+    </div>
+    <div>
+      <select name="wine[color]">
+        <option value="Red">Red</option>
+        <option value="White">White</option>
+        <option value="Ros&eacute;">Ros&eacute;</option>
+      </select>
+    </div>
+    <div>
+      <label for="scent">Scent(s):</label>
+      <input type="text" name="wine[scent]" value="<%= @wine.scent %>" >
+    </div>
+    <div>
+      <label for="taste">Taste(s):</label>
+      <input type="text" name="wine[taste]" value="<%= @wine.taste %>">
+    </div>
+    <div>
+      <label for="summary">Final Thoughts:</label>
+      <input type="textarea" name="wine[summary]" value="<%= @wine.summary %>">
+    </div>
+    <div>
+      <label for="rating"> Rating: <%= @wine.rating %> out of 5 stars</label>
+      <select name="wine[rating]">
+        <option value="1">1 star</option>
+        <option value="2">2 stars</option>
+        <option value="3">3 stars</option>
+        <option value="4">4 stars</option>
+        <option value="5">5 stars</option>
+      </select>
+    </div>
+    <div>
+      <input type="submit" value="Submit">
+    </div>
+  </form>

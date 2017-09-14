@@ -1,10 +1,10 @@
 <h2> Here are the most recent Wines and Their vineyards </h2>
 <% @wines.each do |wine| %>
-<br>
-<br>
-<h2>Wine:</h2>
-<h3><a href="/wines/<%=wine.id%>"><%= wine.name %></a></h3>
-  <h2>Vineyard:</h2>
-<h3><a href="vineyards/<%= wine.vineyard.id %>"><%= wine.vineyard.name %></a></h3>
+  <div>
+    <h2>Wine:</h2>
+    <h3><a href="/wines/<%=wine.id%>"><%= wine.name %></a></h3>
+    <h2>Vineyard:</h2>
+    <h3><a href="vineyards/<%= wine.vineyard.id %>"><%= wine.vineyard.name %></a></h3>
+  </div>
 <br>
 <%end%>
