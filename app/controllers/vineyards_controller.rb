@@ -17,23 +17,22 @@ class VineyardsController < ApplicationController
   post '/vineyards' do
     redirect to '/' if !session[:user_id]
     flash[:message] = "Please login to continue"
-
     # checking id vineyard already exists and checks with current_user id
     @vineyard = Vineyard.find_by(name: params[:name])
-      if @vineyard.nil?
-          @vineyard = Vineyard.new(params)
-          @vineyard.user_id = current_user.id
-      else
-        flash[:message] = "This vineyard already exists"
-        redirect to 'vineyards/new'
-      end
-      if @vineyard.save
-        flash[:message] = "Successfully Added"
-        redirect to "vineyards/#{@vineyard.id}"
-      else
-        redirect to "vineyards/new"
-      end
+    if @vineyard.nil?
+      @vineyard = Vineyard.new(params)
+      @vineyard.user_id = current_user.id
+    else
+      flash[:message] = "This vineyard already exists"
+      redirect to 'vineyards/new'
     end
+    if @vineyard.save
+      flash[:message] = "Successfully Added"
+      redirect to "vineyards/#{@vineyard.id}"
+    else
+      redirect to "vineyards/new"
+    end
+  end
 
 
   get '/vineyards/:id' do
@@ -44,13 +43,13 @@ class VineyardsController < ApplicationController
 
   get '/vineyards/:id/edit' do
     if logged_in?
-    @vineyard = Vineyard.find_by_id(params[:id])
-      if @vineyard.user_id == current_user.id
-        erb :'/vineyards/edit'
-      else
-        flash[:message] = "You cannot edit another User's Vineyard/Winery"
-        redirect to '/vineyards'
-      end
+      @vineyard = Vineyard.find_by_id(params[:id])
+    if @vineyard.user_id == current_user.id
+      erb :'/vineyards/edit'
+    else
+      flash[:message] = "You cannot edit another User's Vineyard/Winery"
+      redirect to '/vineyards'
+    end
     else
       flash[:message] = "Please login to continue"
       redirect to '/login'
@@ -76,18 +75,17 @@ class VineyardsController < ApplicationController
   delete '/vineyards/:id' do
     if logged_in? && current_user
       @vineyard = Vineyard.find_by_id(params[:id])
-      if @vineyard.user_id == current_user.id
-        @vineyard.delete
-        flash[:message] = "Successfully Deleted!"
-        redirect to '/vineyards'
-      else
-        flash[:message] = "You cannot delete another User's Vineyard"
-        redirect to '/vineyards'
-      end
-     else
+    if @vineyard.user_id == current_user.id
+      @vineyard.delete
+      flash[:message] = "Successfully Deleted!"
+      redirect to '/vineyards'
+    else
+      flash[:message] = "You cannot delete another User's Vineyard"
+      redirect to '/vineyards'
+    end
+    else
       flash[:message] = "Please login to continue"
       redirect to '/login'
-     end
-   end
-
+    end
+  end
 end
