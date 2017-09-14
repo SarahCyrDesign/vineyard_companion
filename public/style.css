@@ -23,7 +23,6 @@ li a {
     text-decoration: none;
 }
 
-/* Change the link color to #111 (black) on hover */
 li a:hover {
     background-color: #7a307a;
 }
@@ -60,7 +59,7 @@ li a:hover {
 .tagline{
   font-size: 2.5em;
   position: absolute;
-  top: 500px;
+  top: 600px;
   left: 25%;
 }
 
