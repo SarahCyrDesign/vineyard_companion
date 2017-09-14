@@ -1,8 +1,8 @@
 class WinesController < ApplicationController
 
   get '/wines' do
-     @wines = Wine.all
-     erb :'/wines/index'
+    @wines = Wine.all
+    erb :'/wines/index'
   end
 
   get '/wines/new' do
@@ -28,13 +28,13 @@ class WinesController < ApplicationController
     if params[:wine][:vineyard_id].nil? && !params[:vineyard][:name].empty?
       # checking id vineyard already exists and checks with current_user id
       @vineyard = Vineyard.find_by(name: params[:vineyard][:name], user_id: current_user.id)
-      if @vineyard.nil?
-        @wine.vineyard = Vineyard.new(params[:vineyard])
-        @wine.vineyard.user_id = current_user.id
-      else
-        flash[:message] = "This vineyard already exists"
-        redirect to 'wines/new'
-      end
+    if @vineyard.nil?
+      @wine.vineyard = Vineyard.new(params[:vineyard])
+      @wine.vineyard.user_id = current_user.id
+    else
+      flash[:message] = "This vineyard already exists"
+      redirect to 'wines/new'
+    end
     end
     if @wine.save
       flash[:message] = "Successfully Added"
@@ -53,17 +53,17 @@ class WinesController < ApplicationController
   get '/wines/:id/edit' do
     if logged_in?
       @wine = Wine.find_by_id(params[:id])
-      if @wine.user_id == current_user.id
-        erb :'/wines/edit'
-      else
-        flash[:message] = "You cannot edit another User's Wine"
-        redirect to '/wines'
-      end
+    if @wine.user_id == current_user.id
+      erb :'/wines/edit'
+    else
+      flash[:message] = "You cannot edit another User's Wine"
+      redirect to '/wines'
+    end
     else
       flash[:message] = "Please login to continue"
       redirect to '/login'
+    end
   end
-end
 
 
 patch '/wines/:id' do
@@ -85,17 +85,17 @@ end
   delete '/wines/:id' do
     if logged_in? && current_user
       @wine = Wine.find_by_id(params[:id])
-      if @wine.user_id == current_user.id
-        @wine.delete
-        flash[:message] = "Wine is now deleted"
-        redirect to '/wines'
-      else
-        flash[:message] = "You cannot delete another User's Wine"
-        redirect to '/wines'
-      end
-     else
-       flash[:message] = "Please login to continue"
+    if @wine.user_id == current_user.id
+      @wine.delete
+      flash[:message] = "Wine is now deleted"
+      redirect to '/wines'
+    else
+      flash[:message] = "You cannot delete another User's Wine"
+      redirect to '/wines'
+    end
+    else
+      flash[:message] = "Please login to continue"
       redirect to '/login'
-     end
+    end
   end
 end
