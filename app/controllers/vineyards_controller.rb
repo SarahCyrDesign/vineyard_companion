@@ -15,7 +15,7 @@ class VineyardsController < ApplicationController
   end
 
   post '/vineyards' do
-    redirect to '/' if !session[:user_id]
+    redirect to '/login' if !logged_in?
     flash[:message] = "Please login to continue"
     # checking id vineyard already exists and checks with current_user id
     @vineyard = Vineyard.find_by(name: params[:name])

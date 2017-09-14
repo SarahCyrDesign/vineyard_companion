@@ -15,7 +15,7 @@ class WinesController < ApplicationController
   end
 
   post '/wines' do
-    redirect to '/' if !session[:user_id]
+    redirect to '/login' if !logged_in?
     flash[:message] = "Please login to continue"
     @wine = Wine.find_by(name: params[:wine][:name], user_id: current_user.id)
     if !@wine.nil?
