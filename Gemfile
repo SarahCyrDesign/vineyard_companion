@@ -14,6 +14,7 @@ gem 'pry'
 gem 'bcrypt'
 gem "tux"
 gem 'rack-flash3'
+gem 'zurb-foundation'
 
 group :test do
   gem 'rspec'
