@@ -81,7 +81,7 @@ h1 {
 
 .top-img-container {
   min-height: 300px;
-  background: url(https://raw.githubusercontent.com/SarahCyrDesign/vineyard_companion/master/public/index-top.png);
+  background: url(index-top.png);
   background-repeat: no-repeat;
   background-size: cover;
   border-bottom-style: solid;
@@ -155,4 +155,26 @@ h1 {
   border-top-width: 10px;
   border-top-color: #B0C980;
   margin-top: 50px;
+}
+
+
+/* MEDIA QUERIES */
+
+@media only screen and (max-width: 500px) {
+    .header {
+      font-size: 1.5em;
+    }
+  .subhead {
+    font-size: 1.5em;
+  }
+  .footer-img {
+    width: 75%;
+  }
+
+  #myVideo {
+    position: absolute;
+    top: 45%;
+    max-width: 150%;
+    max-height 150%:
+  }
 }
