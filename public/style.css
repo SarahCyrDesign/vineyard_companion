@@ -3,6 +3,8 @@ body {
   font-size: 1em;
 }
 
+/* Navigation */
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -28,100 +30,129 @@ li a:hover {
 }
 
 /* Header area*/
-.header a {
+
+.hero-color {
+  background-color: #A358A3;
+  height: 20px;
+}
+
+.header {
   font-family: 'Cinzel Decorative', cursive;
   font-size: 2.2em;
   text-decoration: none;
-  color: #ffffff;
-  text-align :center;
   display: block;
   text-shadow: 2px 2px #414042;
-  z-index: 100;
-
-  position: absolute;
-  top: 20%;
-  left: 15%;
 }
 
+h1 {
+  margin: 0;
+  padding: 0;
+}
 .subhead {
   font-family: 'Oregano', cursive;
   font-size: 3em;
   letter-spacing: 2px;
-  color: #ffffff;
-  display: block;
   text-shadow: 2px 2px #414042;
-  z-index: 100;
-  position: absolute;
-  left: 27%;
 }
 
-.tagline{
-  font-size: 2.5em;
+.header, .subhead {
+  color: #ffffff;
 }
 
-/* Images */
+.tagline, .subhead, .header, .account-line {
+  text-align: center;
+}
 
-.top-img-container {
+.tagline, .subhead {
+  font-size: 2.2em;
+}
+
+.account-line {
+  font-size: 1.3em;
+}
+
+.top-img-container, .bottom-content {
   width: 100%;
-  height: 600px;
-  position: relative;
-}
-
-.flex-container {
   display: flex;
   flex-direction: column;
-  background-color:blue;
+  justify-content: center;
+  align-items: center;
 }
 
-.top-image {
-  width: 100%;
-  max-width: 100%;
+.top-img-container {
+  min-height: 300px;
+  background: url(https://raw.githubusercontent.com/SarahCyrDesign/vineyard_companion/master/public/index-top.png);
+  background-repeat: no-repeat;
+  background-size: cover;
   border-bottom-style: solid;
   border-bottom-width: 10px;
   border-bottom-color: #B0C980;
   border-top-style: solid;
   border-top-width: 10px;
   border-top-color: #B0C980;
-  z-index: -1;
-  display: block;
-
-  margin: 0 auto;
-  position: absolute;
-  left: 0;
-  top: 0;
+  margin-bottom: 50px;
+  background-position: center;
 }
 
-.index-main {
-  width: 30%;
-  max-width: 30%;
-  display: block;
-  margin: 0 auto;
-  margin-top: 2%;
+/* LOGIN AREA */
+
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    max-width: 130%;
+    max-height: 130%;
+    z-index: -1
 }
 
-/*Button styles*/
-.button-index-1, .button-index-2, .button-index-3 {
-    text-align :center;
-    color: #ffffff;
-    border-radius: 25px;
-    width: 16%;
-    background: #A358A3;
+.content {
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    width: 60%;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
     margin: auto;
-    padding: 6px;
-    text-decoration: none;
 }
 
+.content > h2 {
+  margin: auto;
+}
 
-/* FOOTER*/
-.bottom-content {
-  height: 400px;
-  width: 100%;
+.button-group{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  margin: auto;
+}
+
+.button-group > div {
+  display: flex;
+  align-content: space-around;
+  margin: 10px;
+}
+
+.login-button:hover, .signup-button:hover {
+  background-color: #7a307a;
+}
+
+.login-button, .signup-button, .logout-button {
+  color: #ffffff;
   background: #A358A3;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+/* FOOTER */
+
+.bottom-content {
+  background: #A358A3;
+  padding-top: 50px;
+  padding-bottom: 50px;
   border-top-style: solid;
   border-top-width: 10px;
   border-top-color: #B0C980;
-  margin-top: 900px;
-  position:relative;
-  z-index: -1;
-
+  margin-top: 50px;
 }
