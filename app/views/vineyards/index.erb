@@ -1,17 +1,32 @@
-<h2> Here are the most recent Vineyards and Wine Ratings </h2>
-<% @vineyards.each do |vineyard| %>
-  <div>
-    <h2>Vineyard</h2>
-    <h3><a href="vineyards/<%= vineyard.id %>"><%= vineyard.name %></a></h3>
-    <h3>Located at: <%=vineyard.location%></h3>
-    <h3>Contact: <%=vineyard.phone_number%></h3>
-    <p>Review: <%=vineyard.review%></p>
+<div class="hero-color"></div>
+<div class="top-img-container-vineyards">
+</div>
+
+<div class="vineyards-content">
+  <h2 class="vineyards-header">Here are the most recent Vineyards and Wine Ratings</h2>
+
+  <div class="vineyards-content">
+  <% @vineyards.each do |vineyard| %>
+  <div class="vineyards-content">
+      <h3 class="vineyard-name"><a href="vineyards/<%= vineyard.id %>"><%= vineyard.name %></a></h3>
+      <h3>Located at: <%=vineyard.location%></h3>
+      <h3>Contact: <%=vineyard.phone_number%></h3>
+      <p>Review: <%=vineyard.review%></p>
+    </div>
   </div>
-  <div>
-  <h2> Wines </h2>
-    <% vineyard.wines.each do |wine| %>
-      <h3><%=wine.name%></h3>
-      <h4>Rating: <%=wine.rating%> out of 5 stars</h4><br>
+</div>
+
+
+  <div class="wines-content">
+    <h2 class="wine-name"> Wines </h2>
+  </div>
+      <% vineyard.wines.each do |wine| %>
+      <div class="wines-content">
+        <h3><%=wine.name%></h3>
+        <h4>Rating: <%=wine.rating%> out of 5 stars</h4><br>
+      </div>
+
+    <%end%>
+    <br>
+    <hr>
   <%end%>
-</div><br>
-<%end%>
