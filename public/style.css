@@ -116,11 +116,11 @@ h1 {
     margin: auto;
 }
 
-.content > h2 {
+.content > h2, .content > h3 {
   margin: auto;
 }
 
-.button-group{
+.button-group, .signup-form-button {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -145,6 +145,9 @@ h1 {
   padding: 10px 20px 10px 20px;
   text-decoration: none;
 }
+
+/* SIGNUP/LOGIN PAGE */
+
 
 /* FOOTER */
 

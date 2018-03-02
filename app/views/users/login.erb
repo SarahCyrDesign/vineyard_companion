@@ -1,15 +1,29 @@
-<h3>Login</h3>
-
-<form action="/login" method="POST">
-  <label for="username">Username:</label>
-  <input type="text" name="username" id="username" placeholder="Username:">
-  <label for="password">Password:</label>
-  <input type="password" name="password" id="password" placeholder="Password:">
-  <input type="submit" value="submit">
-</form>
-
-<h3>Don't have an account yet?</h3>
- <h3>Get started on your Wine Journey!</h3>
-<a class= "button" href="/signup">Sign Up</a>
-<br>
-<a href="/logout">Logout</a>
+<div class="signup-page">
+  <div class="container">
+    <h2>Log In</h2>
+    <form action="/login" method="POST">
+      <ul class="flex-outer">
+        <li>
+          <label for="username">Username</label>
+          <input type="text" name="username" id="username" placeholder="Enter your Username">
+       </li>
+       <li>
+         <label for="password">Password</label>
+         <input type="password" name="password" id="password" placeholder="Enter Your Password">
+      </li>
+      </ul>
+      <ul class="flex-inner">
+        <button type="submit" class="submit">Submit</button>
+      </ul>
+    </form>
+    <div class="content">
+    <h3 class="tagline">Don't have an account yet?</h3>
+     <h3>Get started on your Wine Journey!</h3>
+     <div class="button-group">
+       <div>
+         <a class= "signup-button" href="/signup">Create an Account</a>
+       </div>
+     </div>
+  </div>
+  </div>
+</div>
