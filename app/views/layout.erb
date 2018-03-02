@@ -10,20 +10,22 @@
   <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
 </head>
   <body>
+    <nav>
+      <ul>
+        <li><a class= "button" href="/vineyards">Vineyard/Winery List</a></li>
+        <li><a class= "button" href="/wines">Wine List</a></li>
+        <% if logged_in? %>
+          <li><a class= "button" href="/vineyards/new">Add a Vineyard or Winery</a></li>
+          <li><a class= "button" href="/wines/new">Add a Wine</a></li>
+          <li><a class= "button" href="/users/<%= current_user.id %>">My Wines and Vineyards</a></li>
+          <li><a href="/logout">Logout</a></li>
+        <% else %>
+        <li><a class= "button" href="/signup">Register</a></li>
+        <li><a class= "button" href="/login">Login</a></li>
+        <% end %>
+      </ul>
+    </nav>
 
-    <ul>
-      <li><a class= "button" href="/vineyards">Vineyard/Winery List</a></li>
-      <li><a class= "button" href="/wines">Wine List</a></li>
-      <% if logged_in? %>
-        <li><a class= "button" href="/vineyards/new">Add a Vineyard or Winery</a></li>
-        <li><a class= "button" href="/wines/new">Add a Wine</a></li>
-        <li><a class= "button" href="/users/<%= current_user.id %>">My Wines and Vineyards</a></li>
-        <li><a href="/logout">Logout</a></li>
-      <% else %>
-      <li><a class= "button" href="/signup">Register</a></li>
-      <li><a class= "button" href="/login">Login</a></li>
-      <% end %>
-    </ul>
 
     <% if flash.has?(:message) %>
       <p style="color:#c40707;"><%= flash[:message] %> </p>

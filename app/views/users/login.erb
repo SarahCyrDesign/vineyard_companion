@@ -4,16 +4,19 @@
     <form action="/login" method="POST">
       <ul class="flex-outer">
         <li>
-          <label for="username">Username</label>
-          <input type="text" name="username" id="username" placeholder="Enter your Username">
+          <label for="username">Username:</label>
+          <input type="text" name="username" id="username" placeholder="Enter Your Username">
+        </li>
+        <li>
+          <label for="password">Password:</label>
+          <input type="password" name="password" id="password" placeholder="Enter Your Password">
        </li>
-       <li>
-         <label for="password">Password</label>
-         <input type="password" name="password" id="password" placeholder="Enter Your Password">
-      </li>
+       <br>
+       <ul class="flex-inner">
+         <li>
+          <button type="submit" class="submit">Submit</button>
+        </li>
       </ul>
-      <ul class="flex-inner">
-        <button type="submit" class="submit">Submit</button>
       </ul>
     </form>
     <div class="content">

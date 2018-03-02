@@ -6,7 +6,7 @@ body {
 
 /* Navigation */
 
-ul {
+nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -14,11 +14,11 @@ ul {
     background-color: #A358A3;
 }
 
-li {
+nav li {
     float: left;
 }
 
-li a {
+nav li a {
     display: block;
     color: white;
     text-align: center;
@@ -26,7 +26,7 @@ li a {
     text-decoration: none;
 }
 
-li a:hover {
+nav li a:hover {
     background-color: #7a307a;
 }
 
@@ -144,9 +144,107 @@ h1 {
   background: #A358A3;
   padding: 10px 20px 10px 20px;
   text-decoration: none;
+  text-align: center;
+}
+
+.tagline {
+  text-align: center;
+  font-size: 1.5em;
 }
 
 /* SIGNUP/LOGIN PAGE */
+.signup-page {
+  background: #A358A3;
+  color: #fff;
+  padding: 50px 0px;
+  height: 1000px;
+}
+
+.container {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.container * {
+  box-sizing: border-box;
+}
+
+.flex-outer,
+li.flex-inner {
+  list-style-type: none;
+  padding: 0;
+}
+
+.flex-outer {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.flex-outer li,
+.flex-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.flex-inner {
+  padding: 0 8px;
+  justify-content: space-between;
+}
+
+.flex-outer > li:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.flex-outer li label,
+.flex-outer li p {
+  padding: 8px;
+  font-weight: 300;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.flex-outer > li > label,
+.flex-outer li p {
+  flex: 1 0 120px;
+  max-width: 220px;
+}
+
+.flex-outer > li > label + *,
+.flex-inner {
+  flex: 1 0 220px;
+}
+
+.flex-outer li p {
+  margin: 0;
+}
+
+.flex-outer li input:not([type='checkbox']),
+.flex-outer li textarea {
+  padding: 15px;
+  border: none;
+}
+
+.flex-outer li button, .submit li a {
+  margin-left: auto;
+  padding: 8px 16px;
+  border: none;
+  background: #B0C980;
+  color: #f2f2f2;
+  text-transform: uppercase;
+  letter-spacing: .09em;
+  border-radius: 2px;
+  text-decoration: none;
+}
+
+.flex-outer li button:hover {
+  background: #7f9357;
+}
+
+.flex-inner li {
+  width: 100px;
+}
 
 
 /* FOOTER */
