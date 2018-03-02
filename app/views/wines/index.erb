@@ -1,10 +1,19 @@
-<h2> Here are the most recent Wines and Their vineyards </h2>
-<% @wines.each do |wine| %>
-  <div>
-    <h2>Wine:</h2>
-    <h3><a href="/wines/<%=wine.id%>"><%= wine.name %></a></h3>
-    <h2>Vineyard:</h2>
-    <h3><a href="vineyards/<%= wine.vineyard.id %>"><%= wine.vineyard.name %></a></h3>
+<div class="hero-color"></div>
+<div class="top-img-container-wines">
+</div>
+
+<div class="wines-content">
+  <h2 class="wines-header">Here are the most recent Wines and their Vineyards</h2>
+  <% @wines.each do |wine| %>
+    <div class="wines-content">
+      <h2 class="wine-name"><a href="/wines/<%=wine.id%>"><%= wine.name %></a></h2>
+    </div>
   </div>
-<br>
-<%end%>
+
+    <div class="vineyards-content">
+      <h3 class="vineyard-name"><a href="vineyards/<%= wine.vineyard.id %>"><%= wine.vineyard.name %></a></h3>
+    </div>
+  <br>
+  <hr>
+  <%end%>
+</div>

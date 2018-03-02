@@ -4,6 +4,14 @@ body {
   margin: 0;
 }
 
+hr {
+  border: none;
+  height: 5px;
+  /* Set the hr color */
+  color: #B0C980; /* old IE */
+  background-color: #B0C980; /* Modern Browsers */
+}
+
 /* Navigation */
 
 nav ul {
@@ -60,11 +68,11 @@ h1 {
   color: #ffffff;
 }
 
-.tagline, .subhead, .header, .account-line {
+.vineyards-header, .wines-header, .tagline, .subhead, .header, .account-line {
   text-align: center;
 }
 
-.tagline, .subhead {
+.tagline, .subhead, .vineyards-header, .wines-header {
   font-size: 2.2em;
 }
 
@@ -72,7 +80,7 @@ h1 {
   font-size: 1.3em;
 }
 
-.top-img-container, .bottom-content {
+.top-img-container, .bottom-content, .top-img-container-vineyards, .top-img-container-wines {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -81,8 +89,11 @@ h1 {
 }
 
 .top-img-container {
-  min-height: 300px;
   background: url(index-top.png);
+}
+
+.top-img-container, .top-img-container-wines {
+  min-height: 300px;
   background-repeat: no-repeat;
   background-size: cover;
   border-bottom-style: solid;
@@ -106,14 +117,17 @@ h1 {
     z-index: -1
 }
 
-.content {
-    background: rgba(0, 0, 0, 0.5);
-    color: #f1f1f1;
-    width: 60%;
-    padding: 20px;
+.content, .vineyards-content, .wines-content {
     display: flex;
     flex-wrap: wrap;
     margin: auto;
+}
+
+.content {
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  width: 60%;
+  padding: 20px;
 }
 
 .content > h2, .content > h3 {
@@ -246,6 +260,44 @@ li.flex-inner {
   width: 100px;
 }
 
+/* WINES PAGE/VINEAYRDS PAGE*/
+
+.vineyards-content, .wines-content {
+  justify-content: center;
+}
+
+.vineyards-header, .wines-header {
+  padding-bottom: 30px;
+}
+
+.top-img-container-wines {
+  background: url(wines-top.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.vineyard-name a {
+  color: #A358A3;
+  text-decoration: none;
+  font-size: 1.5em;
+}
+
+.vineyard-name a:hover {
+  color: #7a307a;
+}
+
+.wine-name, .wine-name a {
+  color: #B0C980;
+}
+
+.wine-name a {
+  text-decoration: none;
+  font-size: 1.3em;
+}
+
+.wine-name a:hover {
+  color: darkgreen;
+}
 
 /* FOOTER */
 
@@ -263,7 +315,7 @@ li.flex-inner {
 /* MEDIA QUERIES */
 
 @media only screen and (max-width: 500px) {
-    .header {
+    .header, .vineyards-header, .wines-header {
       font-size: 1.5em;
     }
   .subhead {
