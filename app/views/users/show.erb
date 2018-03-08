@@ -1,5 +1,5 @@
 <div class="vineyards-content">
-  <h2 class="user-greeting">Welcome, <%=current_user.username%></h1>
+  <h2 class="user-greeting">Welcome, <span class="user-name"><%=current_user.username%></span></h1>
   <h2 class="user-greeting">Here are your Vineyards and Wines!</h2>
   <div>
     <%@user.vineyards.each do |vineyard|%>

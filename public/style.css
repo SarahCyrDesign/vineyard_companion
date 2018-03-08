@@ -240,7 +240,7 @@ li.flex-inner {
   border: none;
 }
 
-.flex-outer li button, .submit li a {
+.flex-outer li button, .submit li a, .edit-btn, .delete.btn {
   margin-left: auto;
   padding: 8px 16px;
   border: none;
@@ -252,8 +252,21 @@ li.flex-inner {
   text-decoration: none;
 }
 
-.flex-outer li button:hover {
+.flex-outer li button:hover, .edit-btn:hover, .delete-btn:hover {
   background: #7f9357;
+}
+
+.delete-btn, .edit-btn {
+  padding: 10px;
+}
+
+.delete-btn {
+  margin-top: 20px;
+}
+
+.edit-btn a {
+  color: #fff;
+  text-decoration: none;
 }
 
 .flex-inner li {
@@ -282,13 +295,13 @@ li.flex-inner {
   background-size: cover;
 }
 
-.vineyard-name a {
+.vineyard-name a, .vineyard-name {
   color: #A358A3;
   text-decoration: none;
   font-size: 1.5em;
 }
 
-.vineyard-name a:hover {
+.vineyard-name a:hover, .user-name {
   color: #7a307a;
 }
 
@@ -301,7 +314,7 @@ li.flex-inner {
   font-size: 1.3em;
 }
 
-.wine-name a:hover {
+.wine-name a:hover, .user-greeting {
   color: darkgreen;
 }
 
