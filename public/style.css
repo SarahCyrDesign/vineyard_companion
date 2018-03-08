@@ -273,7 +273,16 @@ li.flex-inner {
   width: 100px;
 }
 
-/* WINES PAGE/VINEAYRDS PAGE*/
+/* WINES PAGE/VINEAYRDS PAGE/USER PAGE*/
+
+.user-content {
+    width: 60%;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: space-between;
+}
 
 .vineyards-content, .wines-content{
   justify-content: center;
