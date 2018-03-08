@@ -14,7 +14,9 @@
   <%end%>
   <form action="/users/<%= @user.id %>/delete" method="post">
     <input type="hidden" id="hidden" name="_method" value="DELETE">
-    <input type="submit" value="Delete Account">
+    <!-- <input type="submit" value="Delete Account"> -->
+    <button class= "delete-btn" type="submit">Delete Account</button>
+
 
   </form>
   <h3> Continue on your wine Journey!</h3>

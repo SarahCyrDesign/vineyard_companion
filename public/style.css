@@ -240,7 +240,7 @@ li.flex-inner {
   border: none;
 }
 
-.flex-outer li button, .submit li a, .edit-btn, .delete.btn {
+.delete-btn, .flex-outer li button, .submit li a, .edit-btn {
   margin-left: auto;
   padding: 8px 16px;
   border: none;
