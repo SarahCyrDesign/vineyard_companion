@@ -117,6 +117,7 @@ h1 {
     z-index: -1
 }
 
+
 .content, .vineyards-content, .wines-content {
     display: flex;
     flex-wrap: wrap;
@@ -356,7 +357,14 @@ li.flex-inner {
   #myVideo {
     position: absolute;
     top: 45%;
-    max-width: 150%;
-    max-height 150%:
+    max-width: 200%;
+    max-height 200%:
   }
+}
+
+@media only screen and (max-width: 350px) {
+  #myVideo {
+    visibility: hidden;
+  }
+
 }
