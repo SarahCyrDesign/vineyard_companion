@@ -1,19 +1,28 @@
-<h2><%= @wine.name %></h2>
-<h3>Price per Bottle: $<%= @wine.price_per_bottle %></h3>
-<h3>Type: <%= @wine.color %></h3>
-<h3>Scent(s) <%= @wine.scent %></h3>
-<h3>Taste(s) <%= @wine.taste %></h3>
-<h3>Final thoughts:</h3><%= @wine.summary %></p>
-<h3>Rating: <%= @wine.rating %> out of 5 stars</h3>
-<h3>From: <%= @wine.vineyard.name %></h3>
-<div>
-  <% if @wine.user == current_user %>
-    <form action="/wines/<%=@wine.id%>" method="POST">
-      <input id="hidden" type="hidden" name="_method" value="delete">
-      <button type="submit">Delete Wine</button>
-    </form>
+<div class="hero-color"></div>
+<div class="top-img-container-wines">
 </div>
-<div>
-  <button type="submit"><a class= "button" href="/wines/<%=@wine.id%>/edit">Edit Wine</a></button>
+
+<div class="vineyards-content">
+  <div>
+    <h2 class="vineyard-name"><%= @wine.name %></h2>
+    <h3>Price per Bottle: $<%= @wine.price_per_bottle %></h3>
+    <h3>Type: <%= @wine.color %></h3>
+    <h3>Scent(s) <%= @wine.scent %></h3>
+    <h3>Taste(s) <%= @wine.taste %></h3>
+    <h3>Final thoughts:</h3><%= @wine.summary %></p>
+    <h3>Rating: <%= @wine.rating %> out of 5 stars</h3>
+    <h3>From: <%= @wine.vineyard.name %></h3>
+    <div>
+      <% if @wine.user == current_user %>
+      <div>
+        <button class="edit-btn" type="submit"><a class= "button" href="/wines/<%=@wine.id%>/edit">Edit Wine</a></button>
+      </div>
+        <form action="/wines/<%=@wine.id%>" method="POST">
+          <input id="hidden" type="hidden" name="_method" value="delete">
+          <button class= "delete-btn" type="submit">Delete Wine</button>
+        </form>
+    </div>
+      <% end %>
+  </div>
+  <br>
 </div>
-  <% end %>
