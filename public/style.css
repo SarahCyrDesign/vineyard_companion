@@ -108,17 +108,24 @@ h1 {
 
 /* LOGIN AREA */
 
+.video-frame {
+  position: relative;
+	padding-bottom: 50%;
+	padding-top: 25px;
+	height: 0;
+}
+
 #myVideo {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    max-width: 130%;
-    max-height: 130%;
-    z-index: -1
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  max-width: 130%;
+  max-height: 130%;
+  z-index: -1
 }
 
 
-.content, .vineyards-content, .wines-content {
+ .vineyards-content, .wines-content {
     display: flex;
     flex-wrap: wrap;
     margin: auto;
@@ -131,7 +138,7 @@ h1 {
   padding: 20px;
 }
 
-.content > h2, .content > h3, .vineyards-content > h2 , .vineyards-content > h3 {
+.content, .content > h2, .content > h3, .vineyards-content > h2 , .vineyards-content > h3 {
   margin: auto;
 }
 
@@ -337,7 +344,7 @@ li.flex-inner {
   border-top-style: solid;
   border-top-width: 10px;
   border-top-color: #B0C980;
-  margin-top: 50px;
+  /* margin-top: 50px; */
 }
 
 
